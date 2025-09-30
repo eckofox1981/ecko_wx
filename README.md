@@ -1,50 +1,35 @@
-# Welcome to your Expo app 👋
+# The Ecko_Wx weather app
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Written in react native, using the [Open Weather API](https://openweathermap.org/).
+You will need your API KEY from Open Weather.
 
-## Get started
+## Features
 
-1. Install dependencies
+- Search cities by name
+- Use GPS to see weather there you are
+- Save your favorite cities for quick access
 
-   ```bash
-   npm install
-   ```
+## Run it on your phone with the  Expo Go app
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+this app is not published on any App-store. you can test it on your mobile with the Expo Go app ([Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_US) or [App Store](https://apps.apple.com/us/app/expo-go/id982107779)).
+Run a terminal within the project folder and type:
+```jsx
+npx expo start
 ```
+A QR-code will appear in the terminal, scan it with the app.
+You should be running the app on your phone.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Run it in your browser
+Run a terminal within the project folder and type:
+```jsx
+npx expo start
+```
+click on the localhost link that appears.
 
-## Learn more
+Since this project is meant for mobile use, GPS-functionality will not work.
 
-To learn more about developing your project with Expo, look at the following resources:
+**For better result;** run the app in mobile mode. For most browser press F12 and select the mobile icons. This will activate mobile mode, depending on your browser a selection of phone should be available in the top part of the screen.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Comments to
+E-mail: [eckofox1981pm.me](mailto:eckofox1981pm.me) (be nice ;-) ).
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
