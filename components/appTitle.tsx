@@ -41,21 +41,20 @@ export function AppTitle() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-
     backgroundColor: "#3300FF",
     flexDirection: "row",
     alignItems: "center",
   },
   logo: {
-    height: 59,
-    width: 59,
-    marginLeft: 20,
+    height: 55,
+    width: 55,
+    marginLeft: 30,
   },
   title: {
     textAlign: "center",
     flex: 1,
     color: "#d2d2d2ff",
-    fontSize: 50,
+    fontSize: 40,
     fontFamily: "title-font",
     fontWeight: 800,
   },
