@@ -4,7 +4,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 export function SearchBar() {
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Search for city" />
+      <TextInput style={styles.input} placeholder="Search for your city" />
       <TouchableOpacity style={styles.searchIcon}>
         <IconSymbol size={50} name="search.fill" color={"#585858ff"} />
       </TouchableOpacity>

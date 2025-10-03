@@ -1,31 +1,20 @@
+import { GpsSearch } from "@/components/gpsSearch";
 import { SearchBar } from "@/components/searchBar";
 import { ThemedText } from "@/components/themed-text";
 import { StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <View>
+    <View style={styles.main}>
       <SearchBar />
+      <GpsSearch />
       <ThemedText>MAIN</ThemedText>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
+  main: {
     alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
   },
 });
