@@ -20,7 +20,7 @@ const MAPPING = {
   "house.fill": "home",
   "heart.fill": "favorite",
   "settings.fill": "settings",
-} as IconMapping;
+} as unknown as IconMapping;
 
 /**
  * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
