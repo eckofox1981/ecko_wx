@@ -15,7 +15,7 @@ export function ThemedIcon({
   darkColor,
   ...rest
 }: otherProps) {
-  const color = useThemeColor({ light: lightColor, dark: darkColor }, "icon");
+  const color = useThemeColor({ light: darkColor, dark: lightColor }, "text");
 
   return <IconSymbol size={size} name={name} color={color} {...rest} />;
 }
