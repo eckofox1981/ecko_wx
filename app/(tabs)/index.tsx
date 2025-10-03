@@ -1,15 +1,16 @@
 import { GpsSearch } from "@/components/gpsSearch";
 import { SearchBar } from "@/components/searchBar";
 import { ThemedText } from "@/components/themed-text";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.main}>
+    <SafeAreaView style={styles.main}>
       <SearchBar />
       <GpsSearch />
       <ThemedText>MAIN</ThemedText>
-    </View>
+    </SafeAreaView>
   );
 }
 

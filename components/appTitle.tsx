@@ -1,6 +1,7 @@
 import * as Font from "expo-font";
 import { useEffect } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CustomFont = () => {
   useEffect(() => {
@@ -24,23 +25,26 @@ export function AppTitle() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView
+      edges={["top"]}
+      style={[{ backgroundColor: "#3300FF" }, styles.container]}
+    >
       <Image
         style={styles.logo}
         source={require("../assets/images/ecko_wx-logo.png")}
       />
       <Text style={styles.title}>Ecko Wx</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 60,
+
     backgroundColor: "#3300FF",
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "center",
   },
   logo: {
     height: 59,
