@@ -1,12 +1,13 @@
-import { Text, View } from "react-native";
+import { ThemedText } from "@/components/themed-text";
+import { View } from "react-native";
 
 export default function Settings() {
   return (
     <View>
-      <Text>Settting page</Text>
-      <Text>celsius to farenheit</Text>
-      <Text>XTRA: clothing tips (yes / no)</Text>
-      <Text>XTRA: how sensible are you to cold</Text>
+      <ThemedText>Settting page</ThemedText>
+      <ThemedText>celsius to farenheit</ThemedText>
+      <ThemedText>XTRA: clothing tips (yes / no)</ThemedText>
+      <ThemedText>XTRA: how sensible are you to cold</ThemedText>
     </View>
   );
 }

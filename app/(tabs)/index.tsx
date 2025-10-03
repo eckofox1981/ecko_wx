@@ -1,9 +1,11 @@
+import { SearchBar } from "@/components/searchBar";
 import { ThemedText } from "@/components/themed-text";
 import { StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (
     <View>
+      <SearchBar />
       <ThemedText>MAIN</ThemedText>
     </View>
   );

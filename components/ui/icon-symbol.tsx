@@ -20,6 +20,7 @@ const MAPPING = {
   "house.fill": "home",
   "heart.fill": "favorite",
   "settings.fill": "settings",
+  "search.fill": "search",
 } as unknown as IconMapping;
 
 /**

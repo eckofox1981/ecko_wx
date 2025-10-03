@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     height: 60,
     backgroundColor: "#3300FF",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-end",
   },
   logo: {
     height: 59,
