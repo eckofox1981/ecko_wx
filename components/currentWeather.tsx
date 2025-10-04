@@ -1,11 +1,26 @@
+import { useMainCityStore } from "@/store/store";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedIcon } from "./themed-icon";
 import { ThemedText } from "./themed-text";
 
 export function CurrentWeather() {
+  const city = useMainCityStore((store) => store.mainCity);
+
+  const isCityState = (item: City) => {
+    if (item.state === undefined) {
+      return ", ";
+    }
+
+    return ", " + item.state + ", ";
+  };
+
   return (
     <View style={styles.main}>
-      <ThemedText style={styles.cityName}>Älmhult, Sweden</ThemedText>
+      <ThemedText style={styles.cityName}>
+        {city.name}
+        {isCityState(city)}
+        {city.country}
+      </ThemedText>
       <View style={styles.weatherContainer}>
         <View style={styles.leftContainer}>
           <Image
