@@ -1,11 +1,25 @@
+import { getCityList } from "@/api/getCities";
 import { IconSymbol } from "@/components/ui/icon-symbol";
+import { useState } from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 
 export function SearchBar() {
+  const [query, setQuery] = useState("");
+
+  const handlePress = () => {
+    console.log("====================================");
+    console.log(getCityList(query));
+    console.log("====================================");
+  };
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Search for your city" />
-      <TouchableOpacity style={styles.searchIcon}>
+      <TextInput
+        style={styles.input}
+        placeholder="Search for your city"
+        value={query}
+        onChangeText={setQuery}
+      />
+      <TouchableOpacity style={styles.searchIcon} onPress={handlePress}>
         <IconSymbol size={50} name="search.fill" color={"#585858ff"} />
       </TouchableOpacity>
     </View>
