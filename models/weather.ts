@@ -31,7 +31,7 @@ export class CurrentWeather {
     visibility: number,
     wind_speed: number,
     wind_deg: number,
-    wind_gust : number;
+    wind_gust: number,
     mainWeather: string,
     descriptionWeather: string,
     iconWeather: string
@@ -68,7 +68,7 @@ export class HourlyForeCast {
   visibility: number;
   wind_speed: number;
   wind_deg: number;
-  wind_gust : number;
+  wind_gust: number;
   mainWeather: string;
   descriptionWeather: string;
   iconWeather: string;
@@ -85,7 +85,7 @@ export class HourlyForeCast {
     visibility: number,
     wind_speed: number,
     wind_deg: number,
-    wind_gust : number,
+    wind_gust: number,
     mainWeather: string,
     descriptionWeather: string,
     iconWeather: string
@@ -109,42 +109,42 @@ export class HourlyForeCast {
 }
 
 export class DailyForecast {
-    dt : Date;
-    sunrise : Date;
-    sunset : Date;
-    moon_phase: number;
-    summary: string;
-    tempDay: number;
-    tempMin: number;
-    tempMax: number;
-    tempNight : number;
-    tempEve : number;
-    tempMorn: number;
-    pressure: number;
-    humidity: number;
-    dew_point: number;
-    wind_speed: number;
-    wind_deg: number;
-    wind_gust: number;
-    descriptionWeather : string;
-    iconWeather: string;
-    clouds: number;
-    pop: number; //probability of precipitation
-    rain: number;
-    snow: number; //where available (in mm)
-    uvi: number;
+  dt: Date;
+  sunrise: Date;
+  sunset: Date;
+  moon_phase: number;
+  summary: string;
+  tempDay: number;
+  tempMin: number;
+  tempMax: number;
+  tempNight: number;
+  tempEve: number;
+  tempMorn: number;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  wind_gust: number;
+  descriptionWeather: string;
+  iconWeather: string;
+  clouds: number;
+  pop: number; //probability of precipitation
+  rain: number;
+  snow: number; //where available (in mm)
+  uvi: number;
 
-    constructor(
-        dt : Date,
-    sunrise : Date,
-    sunset : Date,
+  constructor(
+    dt: Date,
+    sunrise: Date,
+    sunset: Date,
     moon_phase: number,
     summary: string,
     tempDay: number,
     tempMin: number,
     tempMax: number,
-    tempNight : number,
-    tempEve : number,
+    tempNight: number,
+    tempEve: number,
     tempMorn: number,
     pressure: number,
     humidity: number,
@@ -152,20 +152,20 @@ export class DailyForecast {
     wind_speed: number,
     wind_deg: number,
     wind_gust: number,
-    descriptionWeather : string,
+    descriptionWeather: string,
     iconWeather: string,
     clouds: number,
-    pop: number, 
+    pop: number,
     rain: number,
-    snow: number, 
-    uvi: number,
-    ) {
-        this.dt = dt;
+    snow: number,
+    uvi: number
+  ) {
+    this.dt = dt;
     this.sunrise = sunrise;
     this.sunset = sunset;
     this.moon_phase = moon_phase;
     this.summary = summary;
-    this.tempDay  = tempDay;
+    this.tempDay = tempDay;
     this.tempMin = tempMin;
     this.tempMax = tempMax;
     this.tempNight = tempNight;
@@ -180,10 +180,9 @@ export class DailyForecast {
     this.descriptionWeather = descriptionWeather;
     this.iconWeather = iconWeather;
     this.clouds = clouds;
-    this.pop = pop; 
+    this.pop = pop;
     this.rain = rain;
-    this.snow = snow; 
-    this.uvi = uvi;       
-    }
-
+    this.snow = snow;
+    this.uvi = uvi;
+  }
 }
