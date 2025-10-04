@@ -14,3 +14,7 @@ en : english,
 fr: french,
 sv, se: swedish
 */
+
+export function GET_WEATHER_ICON_URL(icon: string) {
+  return `https://openweathermap.org/img/wn/${icon}.png`;
+}
