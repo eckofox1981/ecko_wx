@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedIcon } from "./themed-icon";
 import { ThemedText } from "./themed-text";
+import { Wind } from "./wind";
 
 export function CurrentWeather() {
   const city = useMainCityStore((store) => store.mainCity);
@@ -37,6 +38,19 @@ export function CurrentWeather() {
     return ", " + item.state + ", ";
   };
 
+  const rain = (rain: number | null) => {
+    if (rain === 0 || (rain === undefined) | (rain === null)) {
+      return;
+    }
+    return <ThemedText>Rain last hour: {window.Math.floor(rain)}mm</ThemedText>;
+  };
+  const snow = (snow: number | null) => {
+    if (snow === 0 || (snow === undefined) | (snow === null)) {
+      return;
+    }
+    return <ThemedText>Snow last hour: {window.Math.floor(snow)}mm</ThemedText>;
+  };
+
   return (
     <View style={styles.main}>
       <ThemedText style={styles.cityName}>
@@ -44,32 +58,48 @@ export function CurrentWeather() {
         {isCityState(city)}
         {city.country}
       </ThemedText>
+      <ThemedText style={styles.sunrise}>
+        Time: {currentWeather.dt.getHours()}:{currentWeather.dt.getMinutes()}
+      </ThemedText>
       <View style={styles.weatherContainer}>
         <View style={styles.leftContainer}>
           <Image
-            style={{ flex: 1, resizeMode: "contain" }}
+            style={{ flex: 1, resizeMode: "contain", minHeight: 100 }}
             source={{
-              uri: "https://cdn2.iconfinder.com/data/icons/weather-flat-14/64/weather03-256.png",
+              uri: `https://openweathermap.org/img/wn/${currentWeather.weatherIcon}.png`,
             }}
           />
+          <ThemedText style={styles.description}>
+            {currentWeather.weatherDescription}
+          </ThemedText>
+          <ThemedText style={styles.sunrise}>
+            Sunrise: {currentWeather.sysSunrise.getHours()}:
+            {currentWeather.sysSunrise.getMinutes()}
+          </ThemedText>
+          <ThemedText style={styles.sunrise}>
+            Sunset: {currentWeather.sysSunset.getHours()}:
+            {currentWeather.sysSunset.getMinutes()}
+          </ThemedText>
           <TouchableOpacity style={styles.bookmark}>
             <ThemedIcon size={40} name="heart.fill" />
-            <ThemedText style={styles.bookmarkText}>
-              Bookmark{"\n"}city
-            </ThemedText>
+            <ThemedText>Bookmark{"\n"}city</ThemedText>
           </TouchableOpacity>
         </View>
         <View style={styles.rightContainer}>
-          <ThemedText>Temp: 27*C</ThemedText>
-          <ThemedText>Feels like 27*C</ThemedText>
-          <ThemedText>Clear sky</ThemedText>
-          <ThemedText>Gentle breeze</ThemedText>
-          <ThemedText>5.1 m/s ENE</ThemedText>
-          <ThemedText>1017 hPa</ThemedText>
-          <ThemedText>Humdity: 38%</ThemedText>
-          <ThemedText>UV: 3</ThemedText>
-          <ThemedText>Dew point: 12*C</ThemedText>
-          <ThemedText>Visibility: 10 km</ThemedText>
+          <ThemedText>Temp: {currentWeather.mainTemp}°C</ThemedText>
+          <ThemedText>Feels like: {currentWeather.mainFeels_like}°C</ThemedText>
+          <Wind
+            speed={currentWeather.windSpeed}
+            degree={currentWeather.windDeg}
+            gust={currentWeather.windGust}
+          />
+          {rain(currentWeather.rain1h)}
+          <ThemedText>Pressure: {currentWeather.mainPressure} hPa</ThemedText>
+          <ThemedText>Humidity: {currentWeather.mainHumidity}%</ThemedText>
+          <ThemedText>
+            Visibility:{" "}
+            {window.Math.floor(currentWeather.visibility / 10) / 100} km
+          </ThemedText>
         </View>
       </View>
     </View>
@@ -93,19 +123,29 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   leftContainer: {
-    width: "50%",
+    width: "45%",
   },
   rightContainer: {
-    width: "50%",
+    width: "55%",
     paddingLeft: 10,
+    justifyContent: "space-between",
   },
   bookmark: {
     flexDirection: "row",
     alignItems: "center",
     gap: 5,
-    justifyContent: "flex-start",
+    justifyContent: "center",
+    backgroundColor: "hsla(252, 100%, 50%, 0.50)",
+    borderRadius: 10,
   },
-  bookmarkText: {
-    flex: 1,
+  description: {
+    margin: "auto",
+    textTransform: "capitalize",
+    fontWeight: 600,
+  },
+  sunrise: {
+    fontStyle: "italic",
+    textAlign: "justify",
+    alignSelf: "center",
   },
 });
