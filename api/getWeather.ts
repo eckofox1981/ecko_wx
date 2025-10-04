@@ -31,12 +31,12 @@ export async function getWeather(city: City, lang: string) {
       json.visibility,
       json.wind.speed,
       json.wind.deg,
-      json.wind.gust,
+      json.wind?.gust ? json.wind.gust : 0,
       json.rain?.["1h"],
       json.clouds.all,
-      json.dt,
-      json.sys.sunrise,
-      json.sys.sunset
+      new Date(json.dt * 1000),
+      new Date(json.sys.sunrise * 1000),
+      new Date(json.sys.sunset * 1000)
     );
 
     return currentWx;

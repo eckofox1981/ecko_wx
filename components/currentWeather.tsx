@@ -11,8 +11,13 @@ export function CurrentWeather() {
 
   const isCityState = (item: City) => {
     useEffect(() => {
+      const upDateWeather = async () => {
+        const currentWeather = await getWeather(city, "en");
+        return currentWeather;
+      };
+
       console.log("====================================");
-      console.log(getWeather(city, "en"));
+      console.log(upDateWeather());
       console.log("====================================");
     }, [city]);
 
