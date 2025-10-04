@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
 import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { City } from "@/models/city";
-import { useCityListStore, useMainCityStore } from "@/store/store";
+import { useCityListStore, useMainCityStore } from "@/store/cityStore";
 import { router } from "expo-router";
 
 export default function CityListModal() {

@@ -1,6 +1,7 @@
 import { getWeather } from "@/api/getWeather";
 import { City } from "@/models/city";
-import { useMainCityStore } from "@/store/store";
+import { useMainCityStore } from "@/store/cityStore";
+import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { useEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedIcon } from "./themed-icon";
@@ -8,16 +9,24 @@ import { ThemedText } from "./themed-text";
 
 export function CurrentWeather() {
   const city = useMainCityStore((store) => store.mainCity);
+  const currentWeather = useCurrentWeatherStore(
+    (store) => store.currentWeather
+  );
+  const setCurrentWeather = useCurrentWeatherStore(
+    (store) => store.setCurrentWeather
+  );
 
   const isCityState = (item: City) => {
     useEffect(() => {
       const upDateWeather = async () => {
-        const currentWeather = await getWeather(city, "en");
-        return currentWeather;
+        const weather = await getWeather(city, "en");
+        return weather;
       };
 
+      upDateWeather().then(setCurrentWeather);
+
       console.log("====================================");
-      console.log(upDateWeather());
+      console.log(currentWeather);
       console.log("====================================");
     }, [city]);
 
