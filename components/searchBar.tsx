@@ -1,16 +1,23 @@
 import { getCityList } from "@/api/getCities";
 import { IconSymbol } from "@/components/ui/icon-symbol";
+import { useCityListStore } from "@/store/store";
+import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 
 export function SearchBar() {
   const [query, setQuery] = useState("");
+  const setCityList = useCityListStore((store) => store.setCityList);
 
   const handlePress = () => {
     console.log("====================================");
     console.log(getCityList(query));
     console.log("====================================");
+    getCityList(query).then(setCityList);
+
+    router.push("/cityListModal");
   };
+
   return (
     <View style={styles.container}>
       <TextInput
