@@ -18,12 +18,15 @@ export default function CityListModal() {
 
   return (
     <ThemedView style={styles.container}>
-      <ThemedText>Choose your city</ThemedText>
+      <ThemedText style={styles.title}>Choose your city</ThemedText>
       <FlatList
         data={cityList}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handleSelect(item)}>
+          <TouchableOpacity
+            style={styles.city}
+            onPress={() => handleSelect(item)}
+          >
             <ThemedText>
               {item.name}, {item.state}, {item.country}
             </ThemedText>
@@ -44,5 +47,14 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: "auto",
   },
-  title: {},
+  title: {
+    fontWeight: 800,
+    marginBottom: 20,
+  },
+  city: {
+    height: 40,
+    padding: 10,
+    backgroundColor: "#3300FF",
+    marginBottom: 10,
+  },
 });
