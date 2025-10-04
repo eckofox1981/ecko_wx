@@ -1,4 +1,7 @@
+import { getWeather } from "@/api/getWeather";
+import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/store";
+import { useEffect } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedIcon } from "./themed-icon";
 import { ThemedText } from "./themed-text";
@@ -7,6 +10,12 @@ export function CurrentWeather() {
   const city = useMainCityStore((store) => store.mainCity);
 
   const isCityState = (item: City) => {
+    useEffect(() => {
+      console.log("====================================");
+      console.log(getWeather(city, "en"));
+      console.log("====================================");
+    }, [city]);
+
     if (item.state === undefined) {
       return ", ";
     }

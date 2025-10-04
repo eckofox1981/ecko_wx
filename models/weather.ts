@@ -1,188 +1,126 @@
 export class CurrentWeather {
-  dt: Date;
-  sunrise: Date;
-  sunset: Date;
-  temp: number;
-  feels_like: number;
-  pressure: number;
-  humidity: number;
-  dew_point: number;
-  uvi: number;
-  clouds: number;
+  weatherMain: string;
+  weatherDescription: string;
+  weatherIcon: string;
+  mainTemp: number;
+  mainFeels_like: number;
+  mainTemp_min: number;
+  mainTemp_max: number;
+  mainPressure: number;
+  mainHumidity: number;
+  mainSea_level: number;
   visibility: number;
-  wind_speed: number;
-  wind_deg: number;
-  wind_gust: number;
-  mainWeather: string;
-  descriptionWeather: string;
-  iconWeather: string;
+  windSpeed: number;
+  windDeg: number;
+  windGust: number;
+  rain1h: number | null;
+  cloudsAll: number;
+  dt: Date;
+  sysSunrise: Date;
+  sysSunset: Date;
 
   constructor(
-    dt: Date,
-    sunrise: Date,
-    sunset: Date,
-    temp: number,
-    feels_like: number,
-    pressure: number,
-    humidity: number,
-    dew_point: number,
-    uvi: number,
-    clouds: number,
+    weatherMain: string,
+    weatherDescription: string,
+    weatherIcon: string,
+    mainTemp: number,
+    mainFeels_like: number,
+    mainTemp_min: number,
+    mainTemp_max: number,
+    mainPressure: number,
+    mainHumidity: number,
+    mainSea_level: number,
     visibility: number,
-    wind_speed: number,
-    wind_deg: number,
-    wind_gust: number,
-    mainWeather: string,
-    descriptionWeather: string,
-    iconWeather: string
+    windSpeed: number,
+    windDeg: number,
+    windGust: number,
+    rain1h: number | null,
+    cloudsAll: number,
+    dt: Date,
+    sysSunrise: Date,
+    sysSunset: Date
   ) {
-    this.dt = dt;
-    this.sunrise = sunrise;
-    this.sunset = sunset;
-    this.temp = temp;
-    this.feels_like = feels_like;
-    this.pressure = pressure;
-    this.humidity = humidity;
-    this.dew_point = dew_point;
-    this.uvi = uvi;
-    this.clouds = clouds;
+    this.weatherMain = weatherMain;
+    this.weatherDescription = weatherDescription;
+    this.weatherIcon = weatherIcon;
+    this.mainTemp = mainTemp;
+    this.mainFeels_like = mainFeels_like;
+    this.mainTemp_min = mainTemp_min;
+    this.mainTemp_max = mainTemp_max;
+    this.mainPressure = mainPressure;
+    this.mainHumidity = mainHumidity;
+    this.mainSea_level = mainSea_level;
     this.visibility = visibility;
-    this.wind_speed = wind_speed;
-    this.wind_deg = wind_deg;
-    this.wind_gust = wind_gust;
-    this.mainWeather = mainWeather;
-    this.descriptionWeather = descriptionWeather;
-    this.iconWeather = iconWeather;
+    this.windSpeed = windSpeed;
+    this.windDeg = windDeg;
+    this.windGust = windGust;
+    this.rain1h = rain1h;
+    this.cloudsAll = cloudsAll;
+    this.dt = dt;
+    this.sysSunrise = sysSunrise;
+    this.sysSunset = sysSunset;
   }
 }
 
-export class HourlyForeCast {
+export class ThreeHoursForeCast {
   dt: Date;
-  temp: number;
-  feels_like: number;
-  pressure: number;
-  humidity: number;
-  dew_point: number;
-  uvi: number;
-  clouds: number;
-  visibility: number;
-  wind_speed: number;
-  wind_deg: number;
-  wind_gust: number;
-  mainWeather: string;
-  descriptionWeather: string;
-  iconWeather: string;
+  mainTemp: number;
+  mainFeels_like: number;
+  mainTemp_min: number;
+  mainTemp_max: number;
+  mainPressure: number;
+  mainSea_level: number;
+  mainHumidity: number;
+  weatherMain: string;
+  weatherDescription: string;
+  weatherIcon: string;
+  cloudsAll: number;
+  windSpeed: number;
+  windDeg: number;
+  windGust: number;
+  visibilty: number;
+  pop: number;
+  rain3h: number | null;
+  snow3h: number | null;
 
   constructor(
     dt: Date,
-    temp: number,
-    feels_like: number,
-    pressure: number,
-    humidity: number,
-    dew_point: number,
-    uvi: number,
-    clouds: number,
-    visibility: number,
-    wind_speed: number,
-    wind_deg: number,
-    wind_gust: number,
-    mainWeather: string,
-    descriptionWeather: string,
-    iconWeather: string
-  ) {
-    this.dt = dt;
-    this.temp = temp;
-    this.feels_like = feels_like;
-    this.pressure = pressure;
-    this.humidity = humidity;
-    this.dew_point = dew_point;
-    this.uvi = uvi;
-    this.clouds = clouds;
-    this.visibility = visibility;
-    this.wind_speed = wind_speed;
-    this.wind_deg = wind_deg;
-    this.wind_gust = wind_gust;
-    this.mainWeather = mainWeather;
-    this.descriptionWeather = descriptionWeather;
-    this.iconWeather = iconWeather;
-  }
-}
-
-export class DailyForecast {
-  dt: Date;
-  sunrise: Date;
-  sunset: Date;
-  moon_phase: number;
-  summary: string;
-  tempDay: number;
-  tempMin: number;
-  tempMax: number;
-  tempNight: number;
-  tempEve: number;
-  tempMorn: number;
-  pressure: number;
-  humidity: number;
-  dew_point: number;
-  wind_speed: number;
-  wind_deg: number;
-  wind_gust: number;
-  descriptionWeather: string;
-  iconWeather: string;
-  clouds: number;
-  pop: number; //probability of precipitation
-  rain: number;
-  snow: number; //where available (in mm)
-  uvi: number;
-
-  constructor(
-    dt: Date,
-    sunrise: Date,
-    sunset: Date,
-    moon_phase: number,
-    summary: string,
-    tempDay: number,
-    tempMin: number,
-    tempMax: number,
-    tempNight: number,
-    tempEve: number,
-    tempMorn: number,
-    pressure: number,
-    humidity: number,
-    dew_point: number,
-    wind_speed: number,
-    wind_deg: number,
-    wind_gust: number,
-    descriptionWeather: string,
-    iconWeather: string,
-    clouds: number,
+    mainTemp: number,
+    mainFeels_like: number,
+    mainTemp_min: number,
+    mainTemp_max: number,
+    mainPressure: number,
+    mainHumidity: number,
+    mainSea_level: number,
+    weatherMain: string,
+    weatherDescription: string,
+    weatherIcon: string,
+    cloudsAll: number,
+    windSpeed: number,
+    windDeg: number,
+    windGust: number,
+    visibilty: number,
     pop: number,
-    rain: number,
-    snow: number,
-    uvi: number
+    rain3h: number | null,
+    snow3h: number | null
   ) {
     this.dt = dt;
-    this.sunrise = sunrise;
-    this.sunset = sunset;
-    this.moon_phase = moon_phase;
-    this.summary = summary;
-    this.tempDay = tempDay;
-    this.tempMin = tempMin;
-    this.tempMax = tempMax;
-    this.tempNight = tempNight;
-    this.tempEve = tempEve;
-    this.tempMorn = tempMorn;
-    this.pressure = pressure;
-    this.humidity = humidity;
-    this.dew_point = dew_point;
-    this.wind_speed = wind_speed;
-    this.wind_deg = wind_deg;
-    this.wind_gust = wind_gust;
-    this.descriptionWeather = descriptionWeather;
-    this.iconWeather = iconWeather;
-    this.clouds = clouds;
+    this.mainTemp = mainTemp;
+    this.mainFeels_like = mainFeels_like;
+    this.mainTemp_min = mainTemp_min;
+    this.mainTemp_max = mainTemp_max;
+    this.mainPressure = mainPressure;
+    (this.mainHumidity = mainHumidity), (this.mainSea_level = mainSea_level);
+    this.weatherMain = weatherMain;
+    this.weatherDescription = weatherDescription;
+    this.weatherIcon = weatherIcon;
+    this.cloudsAll = cloudsAll;
+    this.windSpeed = windSpeed;
+    this.windDeg = windDeg;
+    this.windGust = windGust;
+    this.visibilty = visibilty;
     this.pop = pop;
-    this.rain = rain;
-    this.snow = snow;
-    this.uvi = uvi;
+    this.rain3h = rain3h;
+    this.snow3h = snow3h;
   }
 }

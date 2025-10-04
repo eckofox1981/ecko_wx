@@ -7,8 +7,10 @@ export function CITY_GEOCODING_URL(name: string) {
   return `http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=20`;
 }
 
-export function CURRENT_FORECAST_URL(city: City, lang: string) {
-  return `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&lang=${lang}`;
+export function WEATHER_CURRENT_WEATHER_URL(city: City, lang: string) {
+  const lat: number = Math.floor(city.lat * 100) / 100;
+  const lon: number = Math.floor(city.lon * 100) / 100;
+  return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`;
 }
 /*
 lang:

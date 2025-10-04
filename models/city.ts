@@ -1,13 +1,13 @@
 export class City {
   name: string;
-  lat: string;
-  lon: string;
+  lat: number;
+  lon: number;
   country: string;
   state: string;
   constructor(
     name: string,
-    lat: string,
-    lon: string,
+    lat: number,
+    lon: number,
     country: string,
     state: string
   ) {
