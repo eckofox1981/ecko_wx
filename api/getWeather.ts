@@ -1,6 +1,10 @@
 import { City } from "@/models/city";
-import { CurrentWeather } from "@/models/weather";
-import { OPEN_WX_API_KEY, WEATHER_CURRENT_WEATHER_URL } from "./API_KEYS";
+import { CurrentWeather, ThreeHoursForeCast } from "@/models/weather";
+import {
+  OPEN_WX_API_KEY,
+  WEATHER_CURRENT_WEATHER_URL,
+  WEATHER_FORECAST_URL,
+} from "./API_KEYS";
 
 export async function getWeather(city: City, lang: string) {
   const callURL: string = WEATHER_CURRENT_WEATHER_URL(city, lang);
@@ -43,5 +47,51 @@ export async function getWeather(city: City, lang: string) {
   } catch (error) {
     console.error("Unable to fetch weather: " + error.message);
     return "Error";
+  }
+}
+
+export async function getForecast(city: City, lang: string) {
+  const callURl: string = WEATHER_FORECAST_URL(city, lang);
+
+  try {
+    const response = await fetch(callURl, {
+      method: "GET",
+    });
+
+    if (!response.ok) {
+      const message = await response.text();
+      throw new Error(message);
+    }
+
+    const json = await response.json();
+    const forecast = json.list.map(
+      (w: any) =>
+        new ThreeHoursForeCast(
+          w.dt,
+          w.main.temp,
+          w.main.feels_like,
+          w.main.temp_min,
+          w.main.temp_max,
+          w.main.pressure,
+          w.main.humidity,
+          w.main.sea_level,
+          w.weather.main,
+          w.weather.description,
+          w.weather.icon,
+          w.clouds.all,
+          w.wind.speed,
+          w.wind.deg,
+          w.wind.gust,
+          w.visibility,
+          w.pop,
+          w.rain?.["3h"],
+          w.snow?.["3h"]
+        )
+    );
+
+    return forecast;
+  } catch (error) {
+    console.error("Unable to fetch forecast: " + error.message);
+    return [];
   }
 }

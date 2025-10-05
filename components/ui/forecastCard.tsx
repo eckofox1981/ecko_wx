@@ -1,3 +1,4 @@
+import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export function ForecastCard({
@@ -37,7 +38,7 @@ export function ForecastCard({
       <Image
         style={{ flex: 1, resizeMode: "contain", minHeight: 100, margin: -20 }}
         source={{
-          uri: `https://openweathermap.org/img/wn/${icon}.png`,
+          uri: GET_WEATHER_ICON_URL(icon),
         }}
       />
       <Text style={styles.text}>{weather}</Text>

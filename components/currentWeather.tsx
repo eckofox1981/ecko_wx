@@ -1,3 +1,4 @@
+import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
 import { getWeather } from "@/api/getWeather";
 import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/cityStore";
@@ -66,7 +67,7 @@ export function CurrentWeather() {
           <Image
             style={{ flex: 1, resizeMode: "contain", minHeight: 100 }}
             source={{
-              uri: `https://openweathermap.org/img/wn/${currentWeather.weatherIcon}.png`,
+              uri: GET_WEATHER_ICON_URL(currentWeather.weatherIcon),
             }}
           />
           <ThemedText style={styles.description}>
