@@ -30,7 +30,7 @@ export default function HomeScreen() {
       <SearchBar />
       <GpsSearch />
       <CurrentWeather />
-      <ForecastFeed screenSize={screenSize} forecast={forecast} />
+      <ForecastFeed />
     </View>
   );
 }
@@ -38,23 +38,5 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   main: {
     alignItems: "center",
-  },
-  forecastList: {
-    flexDirection: "row",
-  },
-  forecastButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-    justifyContent: "center",
-    backgroundColor: "hsla(252, 100%, 50%, 0.50)",
-    borderRadius: 10,
-    minHeight: 40,
-    margin: 10,
-    padding: 10,
-  },
-  forecastButtonText: {
-    color: "#f3f3f3ff",
-    fontWeight: 600,
   },
 });

@@ -150,7 +150,7 @@ export function CurrentWeather() {
       <View style={styles.weatherContainer}>
         <View style={styles.leftContainer}>
           <Image
-            style={{ flex: 1, resizeMode: "contain", minHeight: iconSize() }}
+            style={{ resizeMode: "contain", minHeight: iconSize() }}
             source={{
               uri: GET_WEATHER_ICON_URL(currentWeather.weatherIcon),
             }}

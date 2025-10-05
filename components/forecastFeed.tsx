@@ -1,20 +1,29 @@
-import { ThreeHoursForeCast } from "@/models/weather";
-import { FlatList, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { useForecastStore } from "@/store/weatherStore";
+import {
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ThemedText } from "./themed-text";
 import { ForecastCard } from "./ui/forecastCard";
 
-export function ForecastFeed({
-  screenSize,
-  forecast,
-}: {
-  screenSize: { height: number; width: number };
-  forecast: ThreeHoursForeCast[];
-}) {
+export function ForecastFeed() {
+  const forecast = useForecastStore((store) => store.forecast);
+  const screenSize: { height: number; width: number } =
+    Dimensions.get("window");
+  const currentDataAndTabHeight: number = 520;
+  const forecastFeedHeight: number =
+    screenSize.height - currentDataAndTabHeight;
+  const numberOfRow: number = Math.floor(forecastFeedHeight / 130);
+  const adaptList = () => {
+    return forecast.slice(0, numberOfRow * 3);
+  };
+
   const PublishForecastCards = () => {
-    console.log("====================================");
-    console.log(screenSize.height);
-    console.log("====================================");
-    if (screenSize.height < 640) {
+    if (screenSize.height < 674) {
       return (
         <TouchableOpacity style={[styles.forecastButton]}>
           <Text style={styles.forecastButtonText}>
@@ -26,7 +35,8 @@ export function ForecastFeed({
     return (
       <FlatList
         style={styles.forecastList}
-        data={forecast}
+        contentContainerStyle={styles.forecastListContent}
+        data={adaptList()}
         keyExtractor={(item, index) => index.toString()}
         numColumns={3}
         renderItem={({ item }) => (
@@ -42,15 +52,31 @@ export function ForecastFeed({
     );
   };
 
-  return <PublishForecastCards />;
+  return (
+    <View style={{ alignItems: "center" }}>
+      <ThemedText style={styles.title}>Forecast (tap for details)</ThemedText>
+      <View style={[styles.container, { height: forecastFeedHeight }]}>
+        <PublishForecastCards />
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  main: {
+  container: {
+    justifyContent: "center",
     alignItems: "center",
   },
+  title: {
+    fontSize: 20,
+    fontWeight: 600,
+  },
   forecastList: {
-    flexDirection: "row",
+    width: "100%",
+  },
+  forecastListContent: {
+    flexGrow: 1,
+    justifyContent: "center",
   },
   forecastButton: {
     flexDirection: "row",
@@ -60,7 +86,6 @@ const styles = StyleSheet.create({
     backgroundColor: "hsla(252, 100%, 50%, 0.50)",
     borderRadius: 10,
     minHeight: 40,
-    margin: 10,
     padding: 10,
   },
   forecastButtonText: {
