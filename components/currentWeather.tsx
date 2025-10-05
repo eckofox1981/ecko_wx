@@ -39,13 +39,13 @@ export function CurrentWeather() {
   };
 
   const rain = (rain: number | null) => {
-    if (rain === 0 || (rain === undefined) | (rain === null)) {
+    if (rain === 0 || rain === undefined || rain === null) {
       return;
     }
     return <ThemedText>Rain last hour: {window.Math.floor(rain)}mm</ThemedText>;
   };
   const snow = (snow: number | null) => {
-    if (snow === 0 || (snow === undefined) | (snow === null)) {
+    if (snow === 0 || snow === undefined || snow === null) {
       return;
     }
     return <ThemedText>Snow last hour: {window.Math.floor(snow)}mm</ThemedText>;
