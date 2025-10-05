@@ -1,20 +1,12 @@
 import { getForecast } from "@/api/getWeather";
 import { CurrentWeather } from "@/components/currentWeather";
+import { ForecastFeed } from "@/components/forecastFeed";
 import { GpsSearch } from "@/components/gpsSearch";
 import { SearchBar } from "@/components/searchBar";
-import { ThemedText } from "@/components/themed-text";
-import { ForecastCard } from "@/components/ui/forecastCard";
 import { useMainCityStore } from "@/store/cityStore";
 import { useForecastStore } from "@/store/weatherStore";
 import { useEffect } from "react";
-import {
-  Dimensions,
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   const forecast = useForecastStore((store) => store.forecast);
@@ -33,44 +25,12 @@ export default function HomeScreen() {
     fetchForeCast().then(setForecast);
   }, [city]);
 
-  const PublishForecastCards = () => {
-    console.log("====================================");
-    console.log(screenSize.height);
-    console.log("====================================");
-    if (screenSize.height < 640) {
-      return (
-        <TouchableOpacity style={[styles.forecastButton]}>
-          <Text style={styles.forecastButtonText}>
-            Tap to see 5-day forecast
-          </Text>
-        </TouchableOpacity>
-      );
-    }
-    return (
-      <FlatList
-        style={styles.forecastList}
-        data={forecast}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={3}
-        renderItem={({ item }) => (
-          <ForecastCard
-            date={item.dt}
-            icon={item.weatherIcon}
-            weather={item.weatherMain}
-            temp={item.mainTemp}
-          />
-        )}
-        ListEmptyComponent={<ThemedText>No forecast found.</ThemedText>}
-      />
-    );
-  };
-
   return (
     <View style={styles.main}>
       <SearchBar />
       <GpsSearch />
       <CurrentWeather />
-      <PublishForecastCards />
+      <ForecastFeed screenSize={screenSize} forecast={forecast} />
     </View>
   );
 }
