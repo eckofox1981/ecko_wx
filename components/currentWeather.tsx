@@ -4,7 +4,7 @@ import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/cityStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { useEffect } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { ThemedIcon } from "./themed-icon";
 import { ThemedText } from "./themed-text";
 import { Wind } from "./wind";
@@ -83,7 +83,7 @@ export function CurrentWeather() {
           </ThemedText>
           <TouchableOpacity style={styles.bookmark}>
             <ThemedIcon size={40} name="heart.fill" />
-            <ThemedText>Bookmark{"\n"}city</ThemedText>
+            <Text style={styles.bookmarkText}>Bookmark{"\n"}city</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.rightContainer}>
@@ -95,7 +95,7 @@ export function CurrentWeather() {
             gust={currentWeather.windGust}
           />
           {rain(currentWeather.rain1h)}
-          <ThemedText>Pressure: {currentWeather.mainPressure} hPa</ThemedText>
+          <ThemedText>Press.: {currentWeather.mainPressure} hPa</ThemedText>
           <ThemedText>Humidity: {currentWeather.mainHumidity}%</ThemedText>
           <ThemedText>
             Visibility:{" "}
@@ -138,6 +138,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "hsla(252, 100%, 50%, 0.50)",
     borderRadius: 10,
+    width: "100%",
+  },
+  bookmarkText: {
+    color: "#f3f3f3ff",
   },
   description: {
     margin: "auto",
