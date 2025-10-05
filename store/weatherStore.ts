@@ -1,4 +1,4 @@
-import { CurrentWeather } from "@/models/weather";
+import { CurrentWeather, ThreeHoursForeCast } from "@/models/weather";
 import { create, StateCreator } from "zustand";
 
 interface CurrentWeatherStore {
@@ -32,3 +32,16 @@ const currentWeatherStore: StateCreator<CurrentWeatherStore> = (set) => ({
 });
 
 export const useCurrentWeatherStore = create(currentWeatherStore);
+
+interface ForecastStore {
+  forecast: ThreeHoursForeCast[];
+  setForecast: (newForecast: ThreeHoursForeCast[]) => void;
+}
+
+const forecastStore: StateCreator<ForecastStore> = (set) => ({
+  forecast: [],
+  setForecast: (newForecast: ThreeHoursForeCast[]) =>
+    set({ forecast: newForecast }),
+});
+
+export const useForecastStore = create(forecastStore);
