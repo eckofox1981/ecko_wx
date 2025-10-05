@@ -13,13 +13,13 @@ export function ForecastCard({
   temp: number;
 }) {
   const weekDays = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
 
   const zeroForunits = (number: number) => {
@@ -32,7 +32,7 @@ export function ForecastCard({
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        {weekDays[date.getDay() - 1]} {zeroForunits(date.getHours())}:
+        {weekDays[date.getDay()]} {zeroForunits(date.getHours())}:
         {zeroForunits(date.getMinutes())}
       </Text>
       <Image

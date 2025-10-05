@@ -51,7 +51,10 @@ export async function getWeather(city: City, lang: string) {
 }
 
 export async function getForecast(city: City, lang: string) {
-  const callURl: string = WEATHER_FORECAST_URL(city, lang);
+  const callURl: string = `${WEATHER_FORECAST_URL(
+    city,
+    lang
+  )}${OPEN_WX_API_KEY}`;
 
   try {
     const response = await fetch(callURl, {
@@ -67,7 +70,7 @@ export async function getForecast(city: City, lang: string) {
     const forecast = json.list.map(
       (w: any) =>
         new ThreeHoursForeCast(
-          w.dt,
+          new Date(w.dt * 1000),
           w.main.temp,
           w.main.feels_like,
           w.main.temp_min,
@@ -75,9 +78,9 @@ export async function getForecast(city: City, lang: string) {
           w.main.pressure,
           w.main.humidity,
           w.main.sea_level,
-          w.weather.main,
-          w.weather.description,
-          w.weather.icon,
+          w.weather[0].main,
+          w.weather[0].description,
+          w.weather[0].icon,
           w.clouds.all,
           w.wind.speed,
           w.wind.deg,
@@ -88,7 +91,9 @@ export async function getForecast(city: City, lang: string) {
           w.snow?.["3h"]
         )
     );
-
+    console.log("====================================");
+    console.log(forecast);
+    console.log("====================================");
     return forecast;
   } catch (error) {
     console.error("Unable to fetch forecast: " + error.message);
