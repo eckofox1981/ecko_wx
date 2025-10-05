@@ -4,7 +4,14 @@ import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/cityStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { useEffect } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { ThemedIcon } from "./themed-icon";
 import { ThemedText } from "./themed-text";
 import { Wind } from "./wind";
@@ -17,6 +24,8 @@ export function CurrentWeather() {
   const setCurrentWeather = useCurrentWeatherStore(
     (store) => store.setCurrentWeather
   );
+  const screenSize: { height: number; width: number } =
+    Dimensions.get("window");
 
   const isCityState = (item: City) => {
     useEffect(() => {
@@ -26,10 +35,6 @@ export function CurrentWeather() {
       };
 
       upDateWeather().then(setCurrentWeather);
-
-      console.log("====================================");
-      console.log(currentWeather);
-      console.log("====================================");
     }, [city]);
 
     if (item.state === undefined) {
@@ -40,16 +45,96 @@ export function CurrentWeather() {
   };
 
   const rain = (rain: number | null) => {
-    if (rain === 0 || rain === undefined || rain === null) {
+    if (
+      rain === 0 ||
+      rain === undefined ||
+      rain === null ||
+      screenSize.height < 600
+    ) {
       return;
     }
     return <ThemedText>Rain last hour: {window.Math.floor(rain)}mm</ThemedText>;
   };
+
   const snow = (snow: number | null) => {
-    if (snow === 0 || snow === undefined || snow === null) {
+    if (
+      snow === 0 ||
+      snow === undefined ||
+      snow === null ||
+      screenSize.height < 600
+    ) {
       return;
     }
     return <ThemedText>Snow last hour: {window.Math.floor(snow)}mm</ThemedText>;
+  };
+
+  const sunrise_sunset480 = () => {
+    if (screenSize.height <= 480) {
+      return;
+    }
+    return (
+      <View>
+        <ThemedText style={styles.sunrise}>
+          Sunrise: {currentWeather.sysSunrise.getHours()}:
+          {currentWeather.sysSunrise.getMinutes()}
+        </ThemedText>
+        <ThemedText style={styles.sunrise}>
+          Sunset: {currentWeather.sysSunset.getHours()}:
+          {currentWeather.sysSunset.getMinutes()}
+        </ThemedText>
+      </View>
+    );
+  };
+
+  const bookmarkButton480 = () => {
+    if (screenSize.height <= 480) {
+      return (
+        <TouchableOpacity style={styles.bookmark}>
+          <ThemedIcon size={20} name="heart.fill" />
+          <Text style={styles.bookmarkText}>Bookmark</Text>
+        </TouchableOpacity>
+      );
+    }
+    return (
+      <TouchableOpacity style={styles.bookmark}>
+        <ThemedIcon size={40} name="heart.fill" />
+        <Text style={styles.bookmarkText}>Bookmark{"\n"}city</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const iconSize = () => {
+    if (screenSize.height <= 480) {
+      return 75;
+    }
+    return 100;
+  };
+
+  const feelLike480 = () => {
+    if (screenSize.height <= 480) {
+      return;
+    }
+    return (
+      <ThemedText>Feels like: {currentWeather.mainFeels_like}°C</ThemedText>
+    );
+  };
+
+  const pressure480 = () => {
+    if (screenSize.height <= 480) {
+      return;
+    }
+    return <ThemedText>Press.: {currentWeather.mainPressure} hPa</ThemedText>;
+  };
+
+  const visibility480 = () => {
+    if (screenSize.height <= 480) {
+      return;
+    }
+    return (
+      <ThemedText>
+        Visibility: {window.Math.floor(currentWeather.visibility / 10) / 100} km
+      </ThemedText>
+    );
   };
 
   return (
@@ -65,7 +150,7 @@ export function CurrentWeather() {
       <View style={styles.weatherContainer}>
         <View style={styles.leftContainer}>
           <Image
-            style={{ flex: 1, resizeMode: "contain", minHeight: 100 }}
+            style={{ flex: 1, resizeMode: "contain", minHeight: iconSize() }}
             source={{
               uri: GET_WEATHER_ICON_URL(currentWeather.weatherIcon),
             }}
@@ -73,34 +158,21 @@ export function CurrentWeather() {
           <ThemedText style={styles.description}>
             {currentWeather.weatherDescription}
           </ThemedText>
-          <ThemedText style={styles.sunrise}>
-            Sunrise: {currentWeather.sysSunrise.getHours()}:
-            {currentWeather.sysSunrise.getMinutes()}
-          </ThemedText>
-          <ThemedText style={styles.sunrise}>
-            Sunset: {currentWeather.sysSunset.getHours()}:
-            {currentWeather.sysSunset.getMinutes()}
-          </ThemedText>
-          <TouchableOpacity style={styles.bookmark}>
-            <ThemedIcon size={40} name="heart.fill" />
-            <Text style={styles.bookmarkText}>Bookmark{"\n"}city</Text>
-          </TouchableOpacity>
+          {sunrise_sunset480()}
+          {bookmarkButton480()}
         </View>
         <View style={styles.rightContainer}>
           <ThemedText>Temp: {currentWeather.mainTemp}°C</ThemedText>
-          <ThemedText>Feels like: {currentWeather.mainFeels_like}°C</ThemedText>
+          {feelLike480()}
           <Wind
             speed={currentWeather.windSpeed}
             degree={currentWeather.windDeg}
             gust={currentWeather.windGust}
           />
           {rain(currentWeather.rain1h)}
-          <ThemedText>Press.: {currentWeather.mainPressure} hPa</ThemedText>
+          {pressure480()}
           <ThemedText>Humidity: {currentWeather.mainHumidity}%</ThemedText>
-          <ThemedText>
-            Visibility:{" "}
-            {window.Math.floor(currentWeather.visibility / 10) / 100} km
-          </ThemedText>
+          {visibility480()}
         </View>
       </View>
     </View>
@@ -130,6 +202,7 @@ const styles = StyleSheet.create({
     width: "55%",
     paddingLeft: 10,
     justifyContent: "space-between",
+    alignItems: "center",
   },
   bookmark: {
     flexDirection: "row",
