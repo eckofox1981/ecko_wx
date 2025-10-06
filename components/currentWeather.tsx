@@ -155,7 +155,14 @@ export function CurrentWeather() {
       <View style={styles.weatherContainer}>
         <View style={styles.leftContainer}>
           <Image
-            style={{ resizeMode: "contain", minHeight: iconSize() }}
+            style={{
+              resizeMode: "contain",
+              height: iconSize(),
+              width: iconSize(),
+              backgroundColor: "#3300FF",
+              margin: "auto",
+              borderRadius: iconSize() / 2,
+            }}
             source={{
               uri: GET_WEATHER_ICON_URL(currentWeather.weatherIcon),
             }}
@@ -214,7 +221,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 5,
     justifyContent: "center",
-    backgroundColor: "hsla(252, 100%, 50%, 1.00)",
+    backgroundColor: "#3300FF",
     borderRadius: 10,
     width: "100%",
     maxWidth: 180,
