@@ -9,7 +9,6 @@ import { useEffect } from "react";
 import { Alert, Dimensions, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
-  const forecast = useForecastStore((store) => store.forecast);
   const setForecast = useForecastStore((store) => store.setForecast);
   const city = useMainCityStore((store) => store.mainCity);
 

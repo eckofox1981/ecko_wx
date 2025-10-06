@@ -1,6 +1,7 @@
 import { getCityList } from "@/api/getCities";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { useCityListStore } from "@/store/cityStore";
+import { useLanguageStore } from "@/store/languageStore";
 import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
@@ -8,6 +9,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 export function SearchBar() {
   const [query, setQuery] = useState("");
   const setCityList = useCityListStore((store) => store.setCityList);
+  const language = useLanguageStore((store) => store.language);
 
   const handlePress = () => {
     console.log("====================================");
@@ -22,7 +24,7 @@ export function SearchBar() {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Search for your city"
+        placeholder={language.searchyourcity}
         value={query}
         onChangeText={setQuery}
       />

@@ -1,3 +1,4 @@
+import { useLanguageStore } from "@/store/languageStore";
 import { useForecastStore } from "@/store/weatherStore";
 import {
   Dimensions,
@@ -11,6 +12,7 @@ import { ThemedText } from "./themed-text";
 import { ForecastCard } from "./ui/forecastCard";
 
 export function ForecastFeed() {
+  const language = useLanguageStore((store) => store.language);
   const forecast = useForecastStore((store) => store.forecast);
   const screenSize: { height: number; width: number } =
     Dimensions.get("window");
@@ -28,7 +30,7 @@ export function ForecastFeed() {
       return (
         <TouchableOpacity style={[styles.forecastButton]}>
           <Text style={styles.forecastButtonText}>
-            Tap to see 5-day forecast
+            {language.tapForDetails}
           </Text>
         </TouchableOpacity>
       );
@@ -55,7 +57,9 @@ export function ForecastFeed() {
 
   return (
     <View style={{ alignItems: "center" }}>
-      <ThemedText style={styles.title}>Forecast (tap for details)</ThemedText>
+      <ThemedText style={styles.title}>
+        {language.forecast} ({language.tapForDetails})
+      </ThemedText>
       <View style={[styles.container, { flex: 1 }]}>
         <PublishForecastCards />
       </View>
@@ -92,5 +96,6 @@ const styles = StyleSheet.create({
   forecastButtonText: {
     color: "#f3f3f3ff",
     fontWeight: 600,
+    textTransform: "capitalize",
   },
 });

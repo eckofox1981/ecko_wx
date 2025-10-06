@@ -3,6 +3,7 @@ import { getWeather } from "@/api/getWeather";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/cityStore";
+import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { useEffect } from "react";
 import {
@@ -18,6 +19,7 @@ import { ThemedText } from "./themed-text";
 import { Wind } from "./wind";
 
 export function CurrentWeather() {
+  const language = useLanguageStore((store) => store.language);
   const city = useMainCityStore((store) => store.mainCity);
   const currentWeather = useCurrentWeatherStore(
     (store) => store.currentWeather
@@ -31,7 +33,7 @@ export function CurrentWeather() {
   const isCityState = (item: City) => {
     useEffect(() => {
       const upDateWeather = async () => {
-        const weather = await getWeather(city, "en");
+        const weather = await getWeather(city, `${language.id}`);
         return weather;
       };
 
@@ -80,11 +82,11 @@ export function CurrentWeather() {
     return (
       <View>
         <ThemedText style={styles.sunrise}>
-          Sunrise: {currentWeather.sysSunrise.getHours()}:
+          {language.sunrise}: {currentWeather.sysSunrise.getHours()}:
           {currentWeather.sysSunrise.getMinutes()}
         </ThemedText>
         <ThemedText style={styles.sunrise}>
-          Sunset: {currentWeather.sysSunset.getHours()}:
+          {language.sunset}: {currentWeather.sysSunset.getHours()}:
           {currentWeather.sysSunset.getMinutes()}
         </ThemedText>
       </View>
@@ -96,14 +98,14 @@ export function CurrentWeather() {
       return (
         <TouchableOpacity style={styles.bookmark}>
           <IconSymbol size={20} name="heart.fill" color={"#f3f3f3ff"} />
-          <Text style={styles.bookmarkText}>Bookmark</Text>
+          <Text style={styles.bookmarkText}>{language.bookmark}</Text>
         </TouchableOpacity>
       );
     }
     return (
       <TouchableOpacity style={styles.bookmark}>
         <IconSymbol size={40} name="heart.fill" color={"#f3f3f3ff"} />
-        <Text style={styles.bookmarkText}>Bookmark{"\n"}city</Text>
+        <Text style={styles.bookmarkText}>{language.bookmarkCity}</Text>
       </TouchableOpacity>
     );
   };
@@ -120,7 +122,9 @@ export function CurrentWeather() {
       return;
     }
     return (
-      <ThemedText>Feels like: {currentWeather.mainFeels_like}°C</ThemedText>
+      <ThemedText>
+        {language.feelsLike}: {currentWeather.mainFeels_like}°C
+      </ThemedText>
     );
   };
 
@@ -128,7 +132,11 @@ export function CurrentWeather() {
     if (screenSize.height <= 480) {
       return;
     }
-    return <ThemedText>Press.: {currentWeather.mainPressure} hPa</ThemedText>;
+    return (
+      <ThemedText>
+        {language.pressure}: {currentWeather.mainPressure} hPa
+      </ThemedText>
+    );
   };
 
   const visibility480 = () => {
@@ -137,7 +145,8 @@ export function CurrentWeather() {
     }
     return (
       <ThemedText>
-        Visibility: {window.Math.floor(currentWeather.visibility / 10) / 100} km
+        {language.visibility}:{" "}
+        {window.Math.floor(currentWeather.visibility / 10) / 100} km
       </ThemedText>
     );
   };
@@ -150,7 +159,8 @@ export function CurrentWeather() {
         {city.country}
       </ThemedText>
       <ThemedText style={styles.sunrise}>
-        Time: {currentWeather.dt.getHours()}:{currentWeather.dt.getMinutes()}
+        {language.time}: {currentWeather.dt.getHours()}:
+        {currentWeather.dt.getMinutes()}
       </ThemedText>
       <View style={styles.weatherContainer}>
         <View style={styles.leftContainer}>
@@ -174,7 +184,9 @@ export function CurrentWeather() {
           {bookmarkButton480()}
         </View>
         <View style={styles.rightContainer}>
-          <ThemedText>Temp: {currentWeather.mainTemp}°C</ThemedText>
+          <ThemedText>
+            {language.temp}: {currentWeather.mainTemp}°C
+          </ThemedText>
           {feelLike480()}
           <Wind
             speed={currentWeather.windSpeed}
@@ -183,7 +195,9 @@ export function CurrentWeather() {
           />
           {rain(currentWeather.rain1h)}
           {pressure480()}
-          <ThemedText>Humidity: {currentWeather.mainHumidity}%</ThemedText>
+          <ThemedText>
+            {language.humidity}: {currentWeather.mainHumidity}%
+          </ThemedText>
           {visibility480()}
         </View>
       </View>
