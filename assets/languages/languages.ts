@@ -1,0 +1,70 @@
+import { Language } from "@/models/languages";
+
+export const english: Language = new Language(
+  "en",
+  "Home",
+  "Favorites",
+  "Settings",
+  "Search for your city",
+  "Get weather at your location",
+  "Time",
+  "Temp,",
+  "Feels like",
+  "Wind",
+  "Gust",
+  "Press",
+  "Humidity",
+  "Visibility",
+  "Sunrise",
+  "Sunset",
+  "Bookmark city",
+  "Bookmark",
+  "Forecast",
+  "tap for details"
+);
+
+export const swedish: Language = new Language(
+  "se",
+  "Hem",
+  "Favoriter",
+  "inställningar",
+  "Sök din stad",
+  "Få vädret där dun befinner dig",
+  "Tid",
+  "Temp,",
+  "Känns som",
+  "Vind",
+  "Byar",
+  "Tryck",
+  "Fuktighet",
+  "Sikt",
+  "Soluppgång",
+  "Solnedgång",
+  "Spara stad",
+  "Spara",
+  "Prognos",
+  "tryck för detaljer"
+);
+
+export const french: Language = new Language(
+  "fr",
+  "Start",
+  "Favoris",
+  "Réglages",
+  "Trouvez votre ville",
+  "Météo à votre position",
+  "Heure",
+  "Temp,",
+  "Ressenti",
+  "Vent",
+  "Rafale",
+  "Press",
+  "Humidité",
+  "Visibilité",
+  "Lever du soleil",
+  "Coucher du soleil",
+  "Ajouter aux favoris",
+  "Sauvegarde",
+  "Prévisions",
+  "appuyer pour plus de détails"
+);
