@@ -75,8 +75,8 @@ export function CurrentWeather() {
     return <ThemedText>Snow last hour: {window.Math.floor(snow)}mm</ThemedText>;
   };
 
-  const sunrise_sunset480 = () => {
-    if (screenSize.height <= 480) {
+  const sunrise_sunset568 = () => {
+    if (screenSize.height <= 568) {
       return;
     }
     return (
@@ -93,8 +93,8 @@ export function CurrentWeather() {
     );
   };
 
-  const bookmarkButton480 = () => {
-    if (screenSize.height <= 480) {
+  const bookmarkButton568 = () => {
+    if (screenSize.height <= 568) {
       return (
         <TouchableOpacity style={styles.bookmark}>
           <IconSymbol size={20} name="heart.fill" color={"#f3f3f3ff"} />
@@ -111,14 +111,14 @@ export function CurrentWeather() {
   };
 
   const iconSize = () => {
-    if (screenSize.height <= 480) {
-      return 75;
+    if (screenSize.height <= 568) {
+      return 50;
     }
     return 100;
   };
 
-  const feelLike480 = () => {
-    if (screenSize.height <= 480) {
+  const feelLike568 = () => {
+    if (screenSize.height <= 568) {
       return;
     }
     return (
@@ -128,8 +128,8 @@ export function CurrentWeather() {
     );
   };
 
-  const pressure480 = () => {
-    if (screenSize.height <= 480) {
+  const pressure568 = () => {
+    if (screenSize.height <= 568) {
       return;
     }
     return (
@@ -139,8 +139,8 @@ export function CurrentWeather() {
     );
   };
 
-  const visibility480 = () => {
-    if (screenSize.height <= 480) {
+  const visibility568 = () => {
+    if (screenSize.height <= 568) {
       return;
     }
     return (
@@ -180,25 +180,25 @@ export function CurrentWeather() {
           <ThemedText style={styles.description}>
             {currentWeather.weatherDescription}
           </ThemedText>
-          {sunrise_sunset480()}
-          {bookmarkButton480()}
+          {sunrise_sunset568()}
+          {bookmarkButton568()}
         </View>
         <View style={styles.rightContainer}>
           <ThemedText>
             {language.temp}: {currentWeather.mainTemp}°C
           </ThemedText>
-          {feelLike480()}
+          {feelLike568()}
           <Wind
             speed={currentWeather.windSpeed}
             degree={currentWeather.windDeg}
             gust={currentWeather.windGust}
           />
           {rain(currentWeather.rain1h)}
-          {pressure480()}
+          {pressure568()}
           <ThemedText>
             {language.humidity}: {currentWeather.mainHumidity}%
           </ThemedText>
-          {visibility480()}
+          {visibility568()}
         </View>
       </View>
     </View>
