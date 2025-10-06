@@ -1,10 +1,12 @@
 import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
 import { getWeather } from "@/api/getWeather";
+import { IconSymbol } from "@/components/ui/icon-symbol";
 import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/cityStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { useEffect } from "react";
 import {
+  Alert,
   Dimensions,
   Image,
   StyleSheet,
@@ -12,7 +14,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ThemedIcon } from "./themed-icon";
 import { ThemedText } from "./themed-text";
 import { Wind } from "./wind";
 
@@ -34,7 +35,11 @@ export function CurrentWeather() {
         return weather;
       };
 
-      upDateWeather().then(setCurrentWeather);
+      upDateWeather()
+        .then(setCurrentWeather)
+        .catch((error: string) =>
+          Alert.alert("Could not fetch weather!", error)
+        );
     }, [city]);
 
     if (item.state === undefined) {
@@ -90,14 +95,14 @@ export function CurrentWeather() {
     if (screenSize.height <= 480) {
       return (
         <TouchableOpacity style={styles.bookmark}>
-          <ThemedIcon size={20} name="heart.fill" />
+          <IconSymbol size={20} name="heart.fill" color={"#f3f3f3ff"} />
           <Text style={styles.bookmarkText}>Bookmark</Text>
         </TouchableOpacity>
       );
     }
     return (
       <TouchableOpacity style={styles.bookmark}>
-        <ThemedIcon size={40} name="heart.fill" />
+        <IconSymbol size={40} name="heart.fill" color={"#f3f3f3ff"} />
         <Text style={styles.bookmarkText}>Bookmark{"\n"}city</Text>
       </TouchableOpacity>
     );
@@ -212,6 +217,8 @@ const styles = StyleSheet.create({
     backgroundColor: "hsla(252, 100%, 50%, 1.00)",
     borderRadius: 10,
     width: "100%",
+    maxWidth: 180,
+    alignSelf: "center",
   },
   bookmarkText: {
     color: "#f3f3f3ff",
