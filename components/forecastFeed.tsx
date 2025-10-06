@@ -18,16 +18,8 @@ export function ForecastFeed() {
   const forecastFeedHeight: number =
     screenSize.height - currentDataAndTabHeight;
   const numberOfRows: number = Math.floor(forecastFeedHeight / 150);
-  const adaptList = () => {
-    console.log(
-      "rows: " +
-        numberOfRows +
-        " screenHeight: " +
-        screenSize.height +
-        " feed height: " +
-        forecastFeedHeight
-    );
 
+  const adaptList = () => {
     return forecast.slice(0, numberOfRows * 3);
   };
 

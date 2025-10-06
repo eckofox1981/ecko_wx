@@ -6,7 +6,7 @@ import { SearchBar } from "@/components/searchBar";
 import { useMainCityStore } from "@/store/cityStore";
 import { useForecastStore } from "@/store/weatherStore";
 import { useEffect } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Alert, Dimensions, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   const forecast = useForecastStore((store) => store.forecast);
@@ -22,7 +22,11 @@ export default function HomeScreen() {
       return newForecast;
     };
 
-    fetchForeCast().then(setForecast);
+    fetchForeCast()
+      .then(setForecast)
+      .catch((error: string) =>
+        Alert.alert("Could not fetch forecast!", error)
+      );
   }, [city]);
 
   return (

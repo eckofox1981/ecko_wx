@@ -44,9 +44,9 @@ export async function getWeather(city: City, lang: string) {
     );
 
     return currentWx;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Unable to fetch weather: " + error.message);
-    return "Error";
+    throw new Error("Error " + error.message);
   }
 }
 
@@ -93,8 +93,8 @@ export async function getForecast(city: City, lang: string) {
     );
 
     return forecast;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Unable to fetch forecast: " + error.message);
-    return [];
+    throw new Error("Error " + error.message);
   }
 }
