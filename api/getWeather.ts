@@ -91,9 +91,7 @@ export async function getForecast(city: City, lang: string) {
           w.snow?.["3h"]
         )
     );
-    console.log("====================================");
-    console.log(forecast);
-    console.log("====================================");
+
     return forecast;
   } catch (error) {
     console.error("Unable to fetch forecast: " + error.message);

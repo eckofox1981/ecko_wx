@@ -9,12 +9,16 @@ import "react-native-reanimated";
 
 import { AppTitle } from "@/components/appTitle";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useFonts } from "expo-font";
 
 export const unstable_settings = {
   anchor: "(tabs)",
 };
 
 export default function RootLayout() {
+  const [fontsLoaded] = useFonts({
+    titleFont: require("../assets/fonts/BonheurRoyale-Regular.ttf"),
+  });
   const colorScheme = useColorScheme();
 
   return (

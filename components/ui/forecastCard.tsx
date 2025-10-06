@@ -32,8 +32,9 @@ export function ForecastCard({
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        {weekDays[date.getDay()]} {zeroForunits(date.getHours())}:
-        {zeroForunits(date.getMinutes())}
+        {weekDays[date.getDay()]}
+        {"\n"}
+        {zeroForunits(date.getHours())}:{zeroForunits(date.getMinutes())}
       </Text>
       <Image
         style={{ flex: 1, resizeMode: "contain", minHeight: 100, margin: -20 }}
@@ -51,15 +52,16 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#2700c5ff",
     borderRadius: 5,
-    padding: 5,
+    padding: 2,
     margin: 2,
     width: 105,
-    height: 125,
+    height: 140,
   },
   text: {
     color: "#d2d2d2ff",
     alignSelf: "center",
     fontWeight: 600,
     fontSize: 13,
+    textAlign: "center",
   },
 });

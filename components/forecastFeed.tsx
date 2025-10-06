@@ -14,12 +14,21 @@ export function ForecastFeed() {
   const forecast = useForecastStore((store) => store.forecast);
   const screenSize: { height: number; width: number } =
     Dimensions.get("window");
-  const currentDataAndTabHeight: number = 520;
+  const currentDataAndTabHeight: number = 590;
   const forecastFeedHeight: number =
     screenSize.height - currentDataAndTabHeight;
-  const numberOfRow: number = Math.floor(forecastFeedHeight / 130);
+  const numberOfRows: number = Math.floor(forecastFeedHeight / 150);
   const adaptList = () => {
-    return forecast.slice(0, numberOfRow * 3);
+    console.log(
+      "rows: " +
+        numberOfRows +
+        " screenHeight: " +
+        screenSize.height +
+        " feed height: " +
+        forecastFeedHeight
+    );
+
+    return forecast.slice(0, numberOfRows * 3);
   };
 
   const PublishForecastCards = () => {
@@ -55,7 +64,7 @@ export function ForecastFeed() {
   return (
     <View style={{ alignItems: "center" }}>
       <ThemedText style={styles.title}>Forecast (tap for details)</ThemedText>
-      <View style={[styles.container, { height: forecastFeedHeight }]}>
+      <View style={[styles.container, { flex: 1 }]}>
         <PublishForecastCards />
       </View>
     </View>
@@ -70,12 +79,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 600,
+    margin: 5,
   },
   forecastList: {
     width: "100%",
   },
   forecastListContent: {
-    flexGrow: 1,
     justifyContent: "center",
   },
   forecastButton: {

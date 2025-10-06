@@ -33,7 +33,7 @@ export function AppTitle() {
         style={styles.logo}
         source={require("../assets/images/ecko_wx-logo.png")}
       />
-      <Text style={styles.title}>Ecko Wx</Text>
+      <Text style={[styles.title, { fontFamily: "title-font" }]}>Ecko Wx</Text>
     </SafeAreaView>
   );
 }
@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
     flex: 1,
     color: "#d2d2d2ff",
     fontSize: 40,
-    fontFamily: "title-font",
     fontWeight: 800,
   },
 });

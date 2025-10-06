@@ -39,7 +39,27 @@
           }
         }
       ],
-      "expo-font"
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/BonheurRoyale-Regular.ttf"],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "BonheurRoyale-Regular",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/BonheurRoyale-Regular.ttf"
+                  }
+                ]
+              }
+            ]
+          },
+          "ios": {
+            "fonts": ["./assets/fonts/BonheurRoyale-Regular.ttf"]
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
