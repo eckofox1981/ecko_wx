@@ -19,6 +19,7 @@ export class Language {
   bookmark: string;
   forecast: string;
   tapForDetails: string;
+  youDeniedLocationPermission: string;
 
   constructor(
     id: string,
@@ -40,7 +41,8 @@ export class Language {
     bookmarkCity: string,
     bookmark: string,
     forecast: string,
-    tapForDetails: string
+    tapForDetails: string,
+    youDeniedLocationPermission: string
   ) {
     this.id = id;
     this.home = home;
@@ -63,5 +65,6 @@ export class Language {
     this.bookmark = bookmark;
     this.forecast = forecast;
     this.tapForDetails = tapForDetails;
+    this.youDeniedLocationPermission = youDeniedLocationPermission;
   }
 }

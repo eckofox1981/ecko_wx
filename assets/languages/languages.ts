@@ -20,7 +20,8 @@ export const english: Language = new Language(
   "Bookmark city",
   "Bookmark",
   "Forecast",
-  "tap for details"
+  "tap for details",
+  "You denied permission to use your location."
 );
 
 export const swedish: Language = new Language(
@@ -43,7 +44,8 @@ export const swedish: Language = new Language(
   "Spara stad",
   "Spara",
   "Prognos",
-  "tryck för detaljer"
+  "tryck för detaljer",
+  "Du gav inte tillstånd för att använda din position."
 );
 
 export const french: Language = new Language(
@@ -66,5 +68,6 @@ export const french: Language = new Language(
   "Ajouter aux favoris",
   "Sauvegarde",
   "Prévisions",
-  "appuyer pour plus de détails"
+  "appuyer pour plus de détails",
+  "Vous n'avez pas donné l'autorisation pour la géolocalisation."
 );
