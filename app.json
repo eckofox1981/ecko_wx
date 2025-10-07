@@ -59,6 +59,12 @@
             "fonts": ["./assets/fonts/BonheurRoyale-Regular.ttf"]
           }
         }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow Ecko_Wx to use your location. This is necessary get the weather at your location."
+        }
       ]
     ],
     "experiments": {
