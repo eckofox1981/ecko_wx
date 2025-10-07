@@ -12,11 +12,8 @@ export function SearchBar() {
   const language = useLanguageStore((store) => store.language);
 
   const handlePress = () => {
-    console.log("====================================");
-    console.log(getCityList(query));
-    console.log("====================================");
     getCityList(query).then(setCityList);
-
+    setQuery("");
     router.push("/cityListModal");
   };
 
@@ -47,11 +44,12 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: 50,
     width: "90%",
-    padding: 25,
+    paddingHorizontal: 25,
     fontSize: 20,
   },
   searchIcon: {
-    marginLeft: -50.0,
+    position: "absolute",
+    right: 5,
     borderRadius: 25,
     height: 50,
     width: 50,
