@@ -7,6 +7,12 @@ export function CITY_GEOCODING_URL(name: string) {
   return `http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=20`;
 }
 
+export function REVERSE_GEODING_URL(lat: number, lon: number) {
+  const latitude = Math.floor(lat * 1000) / 1000;
+  const longitude = Math.floor(lon * 1000) / 1000;
+  return `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1`;
+}
+
 export function WEATHER_CURRENT_WEATHER_URL(city: City, lang: string) {
   const lat: number = Math.floor(city.lat * 100) / 100;
   const lon: number = Math.floor(city.lon * 100) / 100;
