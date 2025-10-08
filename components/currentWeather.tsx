@@ -6,6 +6,7 @@ import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { timeFormating } from "@/utilities/timeFormating";
+import { router } from "expo-router";
 import { useEffect } from "react";
 import {
   Alert,
@@ -141,7 +142,12 @@ export function CurrentWeather() {
   };
 
   return (
-    <View style={styles.main}>
+    <TouchableOpacity
+      style={styles.main}
+      onPress={() => {
+        router.push("/currentWeatherModal");
+      }}
+    >
       <ThemedText style={styles.cityName}>{cityNameFormating(city)}</ThemedText>
       <ThemedText style={styles.sunrise}>
         {language.time}: {timeFormating(currentWeather.dt)}
@@ -185,7 +191,7 @@ export function CurrentWeather() {
           {visibility568()}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 

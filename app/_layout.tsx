@@ -38,6 +38,10 @@ export default function RootLayout() {
           name="cityListModal"
           options={{ presentation: "modal", title: "Choose your city" }}
         />
+        <Stack.Screen
+          name="currentWeatherModal"
+          options={{ presentation: "modal", title: "Current weather" }}
+        />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
