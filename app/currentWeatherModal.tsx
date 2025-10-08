@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
   windLeft: {
     margin: "auto",
     height: 120,
-    backgroundColor: "red",
   },
   windRight: {
     height: 120,
