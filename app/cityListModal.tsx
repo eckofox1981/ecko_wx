@@ -4,6 +4,7 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { City } from "@/models/city";
 import { useCityListStore, useMainCityStore } from "@/store/cityStore";
+import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { router } from "expo-router";
 
 export default function CityListModal() {
@@ -13,14 +14,6 @@ export default function CityListModal() {
   const handleSelect = (city: City) => {
     setMainCity(city);
     router.push("/");
-  };
-
-  const isCityState = (item: City) => {
-    if (item.state === undefined) {
-      return ", ";
-    }
-
-    return ", " + item.state + ", ";
   };
 
   return (
@@ -34,11 +27,7 @@ export default function CityListModal() {
             style={styles.city}
             onPress={() => handleSelect(item)}
           >
-            <ThemedText>
-              {item.name}
-              {isCityState(item)}
-              {item.country}
-            </ThemedText>
+            <ThemedText>{cityNameFormating(item)}</ThemedText>
             {/* Adjust based on your city object structure */}
           </TouchableOpacity>
         )}
