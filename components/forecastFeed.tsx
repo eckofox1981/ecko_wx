@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { ForecastCard } from "./forecastCard";
 import { ThemedText } from "./themed-text";
-import { ForecastCard } from "./ui/forecastCard";
 
 export function ForecastFeed() {
   const language = useLanguageStore((store) => store.language);
