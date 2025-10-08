@@ -5,7 +5,14 @@ import { useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { timeFormating } from "@/utilities/timeFormating";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function CurrentWeatherModal() {
   const city = useMainCityStore((store) => store.mainCity);
@@ -15,19 +22,24 @@ export default function CurrentWeatherModal() {
   const language = useLanguageStore((store) => store.language);
 
   return (
-    <View>
-      <View>
-        <ThemedText>Current weather in {city.name}</ThemedText>
-        <TouchableOpacity>
-          <Text>Forecast</Text>
+    <View style={styles.main}>
+      <ThemedText style={styles.title}>
+        {language.currentWeather} {city.name}
+      </ThemedText>
+      <View style={styles.sunriset}>
+        <ThemedText style={styles.sunriset}>
+          {language.sunrise}: {timeFormating(currentWeather.sysSunrise)} -{" "}
+          {language.sunset}:{timeFormating(currentWeather.sysSunset)}
+        </ThemedText>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonTitle}>Forecast</Text>
         </TouchableOpacity>
       </View>
-      <ThemedText>
-        Sunrise: {timeFormating(currentWeather.sysSunrise)} Sunset:
-        {timeFormating(currentWeather.sysSunset)}
-      </ThemedText>
-      <ScrollView>
-        <View>
+      <ScrollView
+        contentContainerStyle={styles.scrollview}
+        style={{ width: "100%" }}
+      >
+        <View style={[styles.mainDescription, styles.section]}>
           <Image
             style={{
               resizeMode: "contain",
@@ -46,28 +58,32 @@ export default function CurrentWeatherModal() {
             {language.visibility}: {currentWeather.visibility}
           </ThemedText>
         </View>
-        <View>
-          <ThemedText>{language.temperatures}</ThemedText>
-          <ThemedText>
-            {language.average}: {currentWeather.mainTemp}°C
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>
+            {language.temperatures}
           </ThemedText>
-          <ThemedText>
-            {language.minimum}: {currentWeather.mainTemp_min}°C
-          </ThemedText>
-          <ThemedText>
-            {language.maximum}: {currentWeather.mainTemp_max}°C
-          </ThemedText>
+          <View style={styles.data}>
+            <ThemedText>
+              {language.average}: {currentWeather.mainTemp}°C
+            </ThemedText>
+            <ThemedText>
+              {language.minimum}: {currentWeather.mainTemp_min}°C
+            </ThemedText>
+            <ThemedText>
+              {language.maximum}: {currentWeather.mainTemp_max}°C
+            </ThemedText>
+          </View>
         </View>
-        <View>
-          <ThemedText>{language.wind}</ThemedText>
-          <View>
-            <View>
-              <WindCompass degree={currentWeather.windDeg} size={50} />
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>{language.wind}</ThemedText>
+          <View style={styles.windSection}>
+            <View style={styles.windLeft}>
+              <WindCompass degree={currentWeather.windDeg} size={100} />
               <ThemedText>
                 {language.direction}: {currentWeather.windDeg}°
               </ThemedText>
             </View>
-            <View>
+            <View style={[styles.windRight, styles.data]}>
               <ThemedText>
                 {language.speed}: {currentWeather.windSpeed} m/s
               </ThemedText>
@@ -80,8 +96,10 @@ export default function CurrentWeatherModal() {
             </View>
           </View>
         </View>
-        <View>
-          <ThemedText>{language.precipitations}</ThemedText>
+        <View style={styles.section}>
+          <ThemedText style={styles.sectionTitle}>
+            {language.precipitations}
+          </ThemedText>
           <ThemedText>
             {language.rainLastHour}: {currentWeather?.rain1h || 0}mm
           </ThemedText>
@@ -93,3 +111,76 @@ export default function CurrentWeatherModal() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  main: {
+    alignItems: "center",
+  },
+  title: {
+    textAlign: "center",
+    fontWeight: 700,
+    fontSize: 25,
+  },
+  button: {
+    backgroundColor: "#3300FF",
+    borderRadius: 10,
+    alignSelf: "flex-end",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 40,
+  },
+  buttonTitle: {
+    fontWeight: 700,
+    color: "#d2d2d2ff",
+    padding: 5,
+    margin: 5,
+  },
+  sunriset: {
+    fontStyle: "italic",
+    width: "95%",
+    textAlign: "center",
+    fontSize: 15,
+    marginTop: 2,
+  },
+  scrollview: {
+    alignItems: "center",
+  },
+  mainDescription: {
+    alignItems: "center",
+    borderTopWidth: 2,
+    borderTopColor: "#3300FF",
+    width: "95%",
+    padding: 5,
+  },
+  section: {
+    marginTop: 5,
+    alignItems: "center",
+    borderBottomWidth: 2,
+    borderBottomColor: "#3300FF",
+    width: "95%",
+    padding: 5,
+  },
+  sectionTitle: {
+    fontWeight: 600,
+    textDecorationLine: "underline",
+    textAlign: "center",
+  },
+  windSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "5%",
+  },
+  windLeft: {
+    margin: "auto",
+    height: 120,
+    backgroundColor: "red",
+  },
+  windRight: {
+    height: 120,
+  },
+  data: {
+    margin: "auto",
+    alignItems: "flex-end",
+    justifyContent: "space-around",
+  },
+});
