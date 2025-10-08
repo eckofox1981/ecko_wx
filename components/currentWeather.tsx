@@ -5,6 +5,7 @@ import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
+import { timeFormating } from "@/utilities/timeFormating";
 import { useEffect } from "react";
 import {
   Alert,
@@ -82,12 +83,10 @@ export function CurrentWeather() {
     return (
       <View>
         <ThemedText style={styles.sunrise}>
-          {language.sunrise}: {currentWeather.sysSunrise.getHours()}:
-          {currentWeather.sysSunrise.getMinutes()}
+          {language.sunrise}: {timeFormating(currentWeather.sysSunrise)}
         </ThemedText>
         <ThemedText style={styles.sunrise}>
-          {language.sunset}: {currentWeather.sysSunset.getHours()}:
-          {currentWeather.sysSunset.getMinutes()}
+          {language.sunset}: {timeFormating(currentWeather.sysSunset)}
         </ThemedText>
       </View>
     );
@@ -97,14 +96,14 @@ export function CurrentWeather() {
     if (screenSize.height <= 568) {
       return (
         <TouchableOpacity style={styles.bookmark}>
-          <IconSymbol size={20} name="heart.fill" color={"#f3f3f3ff"} />
+          <IconSymbol size={20} name="heart.fill" color={"#d2d2d2ff"} />
           <Text style={styles.bookmarkText}>{language.bookmark}</Text>
         </TouchableOpacity>
       );
     }
     return (
       <TouchableOpacity style={styles.bookmark}>
-        <IconSymbol size={40} name="heart.fill" color={"#f3f3f3ff"} />
+        <IconSymbol size={40} name="heart.fill" color={"#d2d2d2ff"} />
         <Text style={styles.bookmarkText}>{language.bookmarkCity}</Text>
       </TouchableOpacity>
     );
@@ -159,8 +158,7 @@ export function CurrentWeather() {
         {city.country}
       </ThemedText>
       <ThemedText style={styles.sunrise}>
-        {language.time}: {currentWeather.dt.getHours()}:
-        {currentWeather.dt.getMinutes()}
+        {language.time}: {timeFormating(currentWeather.dt)}
       </ThemedText>
       <View style={styles.weatherContainer}>
         <View style={styles.leftContainer}>
@@ -242,7 +240,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   bookmarkText: {
-    color: "#f3f3f3ff",
+    color: "#d2d2d2ff",
   },
   description: {
     margin: "auto",
