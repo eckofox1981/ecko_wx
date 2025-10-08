@@ -5,7 +5,7 @@ import { useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { timeFormating } from "@/utilities/timeFormating";
-import { Image, ScrollView, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 export default function CurrentWeatherModal() {
   const city = useMainCityStore((store) => store.mainCity);
@@ -18,7 +18,9 @@ export default function CurrentWeatherModal() {
     <View>
       <View>
         <ThemedText>Current weather in {city.name}</ThemedText>
-        <TouchableOpacity>Forecast</TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Forecast</Text>
+        </TouchableOpacity>
       </View>
       <ThemedText>
         Sunrise: {timeFormating(currentWeather.sysSunrise)} Sunset:
