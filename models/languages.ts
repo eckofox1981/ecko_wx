@@ -10,7 +10,7 @@ export class Language {
   feelsLike: string;
   wind: string;
   gust: string;
-  pressure: string;
+  press: string;
   humidity: string;
   visibility: string;
   sunrise: string;
@@ -20,6 +20,17 @@ export class Language {
   forecast: string;
   tapForDetails: string;
   youDeniedLocationPermission: string;
+  currentWeather: string;
+  temperatures: string;
+  average: string;
+  maximum: string;
+  minimum: string;
+  pressure: string;
+  speed: string;
+  direction: string;
+  precipitations: string;
+  rainLastHour: string;
+  snowLastHour: string;
 
   constructor(
     id: string,
@@ -33,7 +44,7 @@ export class Language {
     feelsLike: string,
     wind: string,
     gust: string,
-    pressure: string,
+    press: string,
     humidity: string,
     visibility: string,
     sunrise: string,
@@ -42,7 +53,18 @@ export class Language {
     bookmark: string,
     forecast: string,
     tapForDetails: string,
-    youDeniedLocationPermission: string
+    youDeniedLocationPermission: string,
+    currentWeather: string,
+    temperatures: string,
+    average: string,
+    maximum: string,
+    minimum: string,
+    pressure: string,
+    speed: string,
+    direction: string,
+    precipitations: string,
+    rainLastHour: string,
+    snowLastHour: string
   ) {
     this.id = id;
     this.home = home;
@@ -55,7 +77,7 @@ export class Language {
     this.feelsLike = feelsLike;
     this.wind = wind;
     this.gust = gust;
-    this.pressure = pressure;
+    this.press = press;
     this.humidity = humidity;
     this.visibility = visibility;
     this.sunrise = sunrise;
@@ -66,5 +88,16 @@ export class Language {
     this.forecast = forecast;
     this.tapForDetails = tapForDetails;
     this.youDeniedLocationPermission = youDeniedLocationPermission;
+    this.currentWeather = currentWeather;
+    this.temperatures = temperatures;
+    this.average = average;
+    this.maximum = maximum;
+    this.minimum = minimum;
+    this.pressure = pressure;
+    this.speed = speed;
+    this.direction = direction;
+    this.precipitations = precipitations;
+    this.rainLastHour = rainLastHour;
+    this.snowLastHour = snowLastHour;
   }
 }

@@ -21,7 +21,18 @@ export const english: Language = new Language(
   "Bookmark",
   "Forecast",
   "tap for details",
-  "You denied permission to use your location."
+  "You denied permission to use your location.",
+  "Current weather in",
+  "Temperatures",
+  "Average",
+  "Maximum",
+  "Minimum",
+  "Pressure",
+  "Speed",
+  "Direction",
+  "Precipitations",
+  "Rain in the last hour",
+  "Snow in the last hour"
 );
 
 export const swedish: Language = new Language(
@@ -45,7 +56,18 @@ export const swedish: Language = new Language(
   "Spara",
   "Prognos",
   "tryck för detaljer",
-  "Du gav inte tillstånd för att använda din position."
+  "Du gav inte tillstånd för att använda din position.",
+  "Nuvarande väder i",
+  "Temperaturer",
+  "Genomsnittlig",
+  "Maximal",
+  "Minimal",
+  "Lufttryck",
+  "Hastighet",
+  "Riktning",
+  "Nederbörd",
+  "Regn senaste timme",
+  "Snö senaste timme"
 );
 
 export const french: Language = new Language(
@@ -69,5 +91,16 @@ export const french: Language = new Language(
   "Sauvegarde",
   "Prévisions",
   "appuyer pour plus de détails",
-  "Vous n'avez pas donné l'autorisation pour la géolocalisation."
+  "Vous n'avez pas donné l'autorisation pour la géolocalisation.",
+  "Le temps en ce moment  à",
+  "Températures",
+  "Moyenne",
+  "Maximale",
+  "Minimale",
+  "Pression",
+  "Vitesse",
+  "Direction",
+  "Précipitations",
+  "Pluie durant l'heure passée",
+  "Neige durant l'heure passée"
 );
