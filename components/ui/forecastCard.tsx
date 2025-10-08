@@ -1,4 +1,5 @@
 import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
+import { timeFormating } from "@/utilities/timeFormating";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export function ForecastCard({
@@ -22,19 +23,12 @@ export function ForecastCard({
     "Saturday",
   ];
 
-  const zeroForunits = (number: number) => {
-    if (number < 10) {
-      return "0" + number;
-    }
-    return number;
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
         {weekDays[date.getDay()]}
         {"\n"}
-        {zeroForunits(date.getHours())}:{zeroForunits(date.getMinutes())}
+        {timeFormating(date)}
       </Text>
       <Image
         style={{ flex: 1, resizeMode: "contain", minHeight: 100, margin: -20 }}
