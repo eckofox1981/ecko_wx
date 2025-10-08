@@ -1,10 +1,10 @@
 import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
 import { getWeather } from "@/api/getWeather";
 import { IconSymbol } from "@/components/ui/icon-symbol";
-import { City } from "@/models/city";
 import { useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
+import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { timeFormating } from "@/utilities/timeFormating";
 import { useEffect } from "react";
 import {
@@ -31,26 +31,16 @@ export function CurrentWeather() {
   const screenSize: { height: number; width: number } =
     Dimensions.get("window");
 
-  const isCityState = (item: City) => {
-    useEffect(() => {
-      const upDateWeather = async () => {
-        const weather = await getWeather(city, `${language.id}`);
-        return weather;
-      };
+  useEffect(() => {
+    const upDateWeather = async () => {
+      const weather = await getWeather(city, `${language.id}`);
+      return weather;
+    };
 
-      upDateWeather()
-        .then(setCurrentWeather)
-        .catch((error: string) =>
-          Alert.alert("Could not fetch weather!", error)
-        );
-    }, [city]);
-
-    if (item.state === undefined) {
-      return ", ";
-    }
-
-    return ", " + item.state + ", ";
-  };
+    upDateWeather()
+      .then(setCurrentWeather)
+      .catch((error: string) => Alert.alert("Could not fetch weather!", error));
+  }, [city]);
 
   const rain = (rain: number | null) => {
     if (
@@ -152,11 +142,7 @@ export function CurrentWeather() {
 
   return (
     <View style={styles.main}>
-      <ThemedText style={styles.cityName}>
-        {city.name}
-        {isCityState(city)}
-        {city.country}
-      </ThemedText>
+      <ThemedText style={styles.cityName}>{cityNameFormating(city)}</ThemedText>
       <ThemedText style={styles.sunrise}>
         {language.time}: {timeFormating(currentWeather.dt)}
       </ThemedText>
