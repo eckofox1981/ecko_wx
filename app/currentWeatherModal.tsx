@@ -37,7 +37,7 @@ export default function CurrentWeatherModal() {
       </View>
       <ScrollView
         contentContainerStyle={styles.scrollview}
-        style={{ width: "100%", backgroundColor: "red" }}
+        style={{ width: "100%" }}
       >
         <View style={[styles.mainDescription, styles.section]}>
           <Image
