@@ -1,20 +1,20 @@
 import { useLanguageStore } from "@/store/languageStore";
-import { StyleSheet, View } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle } from "react-native";
 import { ThemedText } from "./themed-text";
 import { WindCompass } from "./windCompass";
 
-export function Wind({
-  speed,
-  degree,
-  gust,
-}: {
+interface WindProps {
   speed: number;
   degree: number;
   gust: number;
-}) {
+  style?: StyleProp<ViewStyle>;
+  children?: React.ReactNode;
+}
+
+export function Wind({ speed, degree, gust, style, children }: WindProps) {
   const language = useLanguageStore((store) => store.language);
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <WindCompass degree={degree} size={40} />
       <View>
         <ThemedText>
