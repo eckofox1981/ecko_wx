@@ -37,7 +37,7 @@ export default function CurrentWeatherModal() {
       </View>
       <ScrollView
         contentContainerStyle={styles.scrollview}
-        style={{ width: "100%" }}
+        style={{ width: "100%", backgroundColor: "red" }}
       >
         <View style={[styles.mainDescription, styles.section]}>
           <Image
@@ -53,7 +53,9 @@ export default function CurrentWeatherModal() {
               uri: GET_WEATHER_ICON_URL(currentWeather.weatherIcon),
             }}
           />
-          <ThemedText>{currentWeather.weatherDescription}</ThemedText>
+          <ThemedText style={styles.mainText}>
+            {currentWeather.weatherDescription}
+          </ThemedText>
           <ThemedText>
             {language.visibility}: {currentWeather.visibility}
           </ThemedText>
@@ -115,6 +117,8 @@ export default function CurrentWeatherModal() {
 const styles = StyleSheet.create({
   main: {
     alignItems: "center",
+    marginTop: 10,
+    flex: 1,
   },
   title: {
     textAlign: "center",
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   scrollview: {
-    alignItems: "center",
+    paddingBottom: 20,
   },
   mainDescription: {
     alignItems: "center",
@@ -152,7 +156,12 @@ const styles = StyleSheet.create({
     width: "95%",
     padding: 5,
   },
+  mainText: {
+    textTransform: "capitalize",
+    fontWeight: 600,
+  },
   section: {
+    alignSelf: "center",
     marginTop: 5,
     alignItems: "center",
     borderBottomWidth: 2,
