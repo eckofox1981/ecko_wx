@@ -5,6 +5,7 @@ import { useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { timeFormating } from "@/utilities/timeFormating";
+import { router } from "expo-router";
 import {
   Image,
   ScrollView,
@@ -31,7 +32,12 @@ export default function CurrentWeatherModal() {
           {language.sunrise}: {timeFormating(currentWeather.sysSunrise)} -{" "}
           {language.sunset}:{timeFormating(currentWeather.sysSunset)}
         </ThemedText>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            router.push("/forecastModal");
+          }}
+        >
           <Text style={styles.buttonTitle}>Forecast</Text>
         </TouchableOpacity>
       </View>

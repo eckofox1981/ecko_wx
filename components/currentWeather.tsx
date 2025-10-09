@@ -124,7 +124,7 @@ export function CurrentWeather() {
     }
     return (
       <ThemedText>
-        {language.pressure}: {currentWeather.mainPressure} hPa
+        {language.press}.: {currentWeather.mainPressure} hPa
       </ThemedText>
     );
   };

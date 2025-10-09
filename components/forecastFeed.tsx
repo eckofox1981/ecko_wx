@@ -1,5 +1,6 @@
 import { useLanguageStore } from "@/store/languageStore";
 import { useForecastStore } from "@/store/weatherStore";
+import { router } from "expo-router";
 import {
   Dimensions,
   FlatList,
@@ -28,7 +29,12 @@ export function ForecastFeed() {
   const PublishForecastCards = () => {
     if (screenSize.height < 674) {
       return (
-        <TouchableOpacity style={[styles.forecastButton]}>
+        <TouchableOpacity
+          style={[styles.forecastButton]}
+          onPress={() => {
+            router.push("/forecastModal");
+          }}
+        >
           <Text style={styles.forecastButtonText}>
             {language.tapForDetails}
           </Text>
@@ -36,22 +42,28 @@ export function ForecastFeed() {
       );
     }
     return (
-      <FlatList
-        style={styles.forecastList}
-        contentContainerStyle={styles.forecastListContent}
-        data={adaptList()}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={3}
-        renderItem={({ item }) => (
-          <ForecastCard
-            date={item.dt}
-            icon={item.weatherIcon}
-            weather={item.weatherMain}
-            temp={item.mainTemp}
-          />
-        )}
-        ListEmptyComponent={<ThemedText>No forecast found.</ThemedText>}
-      />
+      <TouchableOpacity
+        onPress={() => {
+          router.push("/forecastModal");
+        }}
+      >
+        <FlatList
+          style={styles.forecastList}
+          contentContainerStyle={styles.forecastListContent}
+          data={adaptList()}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={3}
+          renderItem={({ item }) => (
+            <ForecastCard
+              date={item.dt}
+              icon={item.weatherIcon}
+              weather={item.weatherMain}
+              temp={item.mainTemp}
+            />
+          )}
+          ListEmptyComponent={<ThemedText>No forecast found.</ThemedText>}
+        />
+      </TouchableOpacity>
     );
   };
 
