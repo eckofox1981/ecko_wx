@@ -20,6 +20,7 @@ export default function CurrentWeatherModal() {
   const currentWeather = useCurrentWeatherStore(
     (store) => store.currentWeather
   );
+
   const language = useLanguageStore((store) => store.language);
 
   return (

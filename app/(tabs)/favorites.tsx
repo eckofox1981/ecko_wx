@@ -3,11 +3,13 @@ import { FlatList, StyleSheet, View } from "react-native";
 import { FavoriteCard } from "@/components/favoriteCard";
 import { ThemedText } from "@/components/themed-text";
 import { City } from "@/models/city";
+import { useFavoriteCitiesStore } from "@/store/cityStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Favorites() {
-  const [cities, setCities] = useState<City[] | null>(null);
+  const favoCities = useFavoriteCitiesStore((store) => store.favoriteCities);
+  const setFavoCities = useFavoriteCitiesStore((store) => store.setFavoCities);
 
   useEffect(() => {
     const getFavorites = async () => {
@@ -23,16 +25,15 @@ export default function Favorites() {
         );
       }
     };
-    getFavorites().then(setCities);
-  });
+    getFavorites().then(setFavoCities);
+  }, []);
 
   return (
-    <View style={styles.main}>
+    <View>
       <ThemedText style={styles.title}>Favorites</ThemedText>
-
       <FlatList
-        data={cities}
-        keyExtractor={(item) => `${item.lat}-${item.lon}`}
+        data={favoCities}
+        keyExtractor={(item) => `${item.lat}-${item.lon}-${Math.random()}`} //TODO: remove Math.random (there to fix duplicate issue)
         renderItem={({ item }) => <FavoriteCard city={item} />}
         ListEmptyComponent={
           <ThemedText style={styles.noCities}>
@@ -45,9 +46,6 @@ export default function Favorites() {
 }
 
 const styles = StyleSheet.create({
-  main: {
-    flex: 1,
-  },
   title: {
     fontWeight: 800,
     alignSelf: "center",

@@ -1,5 +1,5 @@
 import { City } from "@/models/city";
-import { create } from "zustand";
+import { create, StateCreator } from "zustand";
 
 const cityListStore = (set: any) => ({
   cityList: [],
@@ -20,3 +20,15 @@ const mainCityStore = (set: any) => ({
 });
 
 export const useMainCityStore = create(mainCityStore);
+
+interface FavoriteCitiesStore {
+  favoriteCities: City[] | null;
+  setFavoCities: (newList: City[]) => void;
+}
+
+const favoriteCitiesStore: StateCreator<FavoriteCitiesStore> = (set) => ({
+  favoriteCities: null,
+  setFavoCities: (newList: City[]) => set({ favoriteCities: newList }),
+});
+
+export const useFavoriteCitiesStore = create(favoriteCitiesStore);

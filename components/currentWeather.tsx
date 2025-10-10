@@ -1,7 +1,7 @@
 import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
 import { getWeather } from "@/api/getWeather";
 import { IconSymbol } from "@/components/ui/icon-symbol";
-import { useMainCityStore } from "@/store/cityStore";
+import { useFavoriteCitiesStore, useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
@@ -30,6 +30,8 @@ export function CurrentWeather() {
   const setCurrentWeather = useCurrentWeatherStore(
     (store) => store.setCurrentWeather
   );
+  const favoCities = useFavoriteCitiesStore((store) => store.favoriteCities);
+  const setFavoCities = useFavoriteCitiesStore((store) => store.setFavoCities);
   const screenSize: { height: number; width: number } =
     Dimensions.get("window");
 
@@ -47,6 +49,13 @@ export function CurrentWeather() {
   const addToFavorite = async () => {
     const jsonString = await AsyncStorage.getItem("cities");
     const json: any[] = jsonString ? JSON.parse(jsonString) : [];
+    if (json.includes(city)) {
+      Alert.alert(
+        "Duplicate cities",
+        "You've already added this city to your favorites."
+      );
+      return;
+    }
     const newCityList = [...json, city];
 
     await AsyncStorage.setItem("cities", JSON.stringify(newCityList))
@@ -66,11 +75,7 @@ export function CurrentWeather() {
       "City added to favorites",
       `${cityNameFormating(city)} was added to your favorites.`
     );
-    console.log("====================================");
-    console.log(
-      "STORED: " + (await JSON.stringify(AsyncStorage.getItem("cities")))
-    );
-    console.log("====================================");
+    setFavoCities(newCityList);
   };
 
   const rain = (rain: number | null) => {
