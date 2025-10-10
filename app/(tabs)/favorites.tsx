@@ -1,4 +1,4 @@
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
 import { FavoriteCard } from "@/components/favoriteCard";
 import { ThemedText } from "@/components/themed-text";
@@ -29,18 +29,17 @@ export default function Favorites() {
   return (
     <View style={styles.main}>
       <ThemedText style={styles.title}>Favorites</ThemedText>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <FlatList
-          data={cities}
-          keyExtractor={(item) => `${item.lat}-${item.lon}`}
-          renderItem={({ item }) => <FavoriteCard city={item} />}
-          ListEmptyComponent={
-            <ThemedText style={styles.noCities}>
-              No cities added to favorites
-            </ThemedText>
-          }
-        />
-      </ScrollView>
+
+      <FlatList
+        data={cities}
+        keyExtractor={(item) => `${item.lat}-${item.lon}`}
+        renderItem={({ item }) => <FavoriteCard city={item} />}
+        ListEmptyComponent={
+          <ThemedText style={styles.noCities}>
+            No cities added to favorites
+          </ThemedText>
+        }
+      />
     </View>
   );
 }
@@ -57,9 +56,5 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: "25%",
     fontSize: 20,
-  },
-  scrollView: {
-    paddingHorizontal: 5,
-    paddingBottom: 20,
   },
 });
