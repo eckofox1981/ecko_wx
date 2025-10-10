@@ -44,7 +44,7 @@ export function CurrentWeather() {
     upDateWeather()
       .then(setCurrentWeather)
       .catch((error: string) => Alert.alert("Could not fetch weather!", error));
-  }, [city]);
+  }, [city, language]);
 
   const addToFavorite = async () => {
     const jsonString = await AsyncStorage.getItem("cities");

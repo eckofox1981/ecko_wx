@@ -16,13 +16,17 @@ export function REVERSE_GEODING_URL(lat: number, lon: number) {
 export function WEATHER_CURRENT_WEATHER_URL(city: City, lang: string) {
   const lat: number = Math.floor(city.lat * 100) / 100;
   const lon: number = Math.floor(city.lon * 100) / 100;
-  return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}`;
+  return `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=${lang}`;
 }
 
 export function WEATHER_FORECAST_URL(city: City, lang: string) {
   const lat: number = Math.floor(city.lat * 100) / 100;
   const lon: number = Math.floor(city.lon * 100) / 100;
-  return `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}`;
+  console.log(
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&lang=${lang}`
+  );
+
+  return `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&lang=${lang}`;
 }
 /*
 lang:

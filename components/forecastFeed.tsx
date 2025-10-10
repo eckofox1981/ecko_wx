@@ -57,7 +57,7 @@ export function ForecastFeed() {
             <ForecastCard
               date={item.dt}
               icon={item.weatherIcon}
-              weather={item.weatherMain}
+              weather={item.weatherDescription}
               temp={item.mainTemp}
             />
           )}
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 600,
     margin: 5,
+    textAlign: "center",
   },
   forecastList: {
     width: "100%",
