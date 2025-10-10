@@ -6,6 +6,7 @@ import { useLanguageStore } from "@/store/languageStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { timeFormating } from "@/utilities/timeFormating";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useEffect } from "react";
 import {
@@ -42,6 +43,35 @@ export function CurrentWeather() {
       .then(setCurrentWeather)
       .catch((error: string) => Alert.alert("Could not fetch weather!", error));
   }, [city]);
+
+  const addToFavorite = async () => {
+    const jsonString = await AsyncStorage.getItem("cities");
+    const json: any[] = jsonString ? JSON.parse(jsonString) : [];
+    const newCityList = [...json, city];
+
+    await AsyncStorage.setItem("cities", JSON.stringify(newCityList))
+      .then(() => {
+        Alert.alert(
+          "City added to favorites",
+          `${cityNameFormating(city)} was added to your favorites.`
+        );
+      })
+      .catch((err) => {
+        Alert.alert(
+          "ERROR",
+          `Could not save city to favorites: ${err.message}`
+        );
+      });
+    Alert.alert(
+      "City added to favorites",
+      `${cityNameFormating(city)} was added to your favorites.`
+    );
+    console.log("====================================");
+    console.log(
+      "STORED: " + (await JSON.stringify(AsyncStorage.getItem("cities")))
+    );
+    console.log("====================================");
+  };
 
   const rain = (rain: number | null) => {
     if (
@@ -86,14 +116,14 @@ export function CurrentWeather() {
   const bookmarkButton568 = () => {
     if (screenSize.height <= 568) {
       return (
-        <TouchableOpacity style={styles.bookmark}>
+        <TouchableOpacity style={styles.bookmark} onPress={addToFavorite}>
           <IconSymbol size={20} name="heart.fill" color={"#d2d2d2ff"} />
           <Text style={styles.bookmarkText}>{language.bookmark}</Text>
         </TouchableOpacity>
       );
     }
     return (
-      <TouchableOpacity style={styles.bookmark}>
+      <TouchableOpacity style={styles.bookmark} onPress={addToFavorite}>
         <IconSymbol size={40} name="heart.fill" color={"#d2d2d2ff"} />
         <Text style={styles.bookmarkText}>{language.bookmarkCity}</Text>
       </TouchableOpacity>

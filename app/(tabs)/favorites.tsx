@@ -1,24 +1,65 @@
-import { StyleSheet, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 
+import { FavoriteCard } from "@/components/favoriteCard";
 import { ThemedText } from "@/components/themed-text";
+import { City } from "@/models/city";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 
 export default function Favorites() {
+  const [cities, setCities] = useState<City[] | null>(null);
+
+  useEffect(() => {
+    const getFavorites = async () => {
+      const jsonString = await AsyncStorage.getItem("cities");
+      const json: any[] = jsonString ? JSON.parse(jsonString) : [];
+
+      if (json.length === 0) {
+        return [];
+      } else {
+        return json.map(
+          (city) =>
+            new City(city.name, city.lat, city.lon, city.country, city.state)
+        );
+      }
+    };
+    getFavorites().then(setCities);
+  });
+
   return (
-    <View>
-      <ThemedText>Favorite</ThemedText>
+    <View style={styles.main}>
+      <ThemedText style={styles.title}>Favorites</ThemedText>
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        <FlatList
+          data={cities}
+          keyExtractor={(item) => `${item.lat}-${item.lon}`}
+          renderItem={({ item }) => <FavoriteCard city={item} />}
+          ListEmptyComponent={
+            <ThemedText style={styles.noCities}>
+              No cities added to favorites
+            </ThemedText>
+          }
+        />
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: "#808080",
-    bottom: -90,
-    left: -35,
-    position: "absolute",
+  main: {
+    flex: 1,
   },
-  titleContainer: {
-    flexDirection: "row",
-    gap: 8,
+  title: {
+    fontWeight: 800,
+    alignSelf: "center",
+  },
+  noCities: {
+    alignSelf: "center",
+    marginTop: "25%",
+    fontSize: 20,
+  },
+  scrollView: {
+    paddingHorizontal: 5,
+    paddingBottom: 20,
   },
 });
