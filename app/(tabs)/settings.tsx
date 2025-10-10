@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   },
   main: {
     padding: 5,
-    gap: 10,
     marginHorizontal: "auto",
   },
   selection: {
@@ -49,7 +48,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderBottomWidth: 2,
     borderBottomColor: "#3300FF",
-    padding: 5,
+    paddingHorizontal: 5,
+    paddingVertical: 10,
     width: "95%",
   },
 });
