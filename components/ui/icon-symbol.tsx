@@ -22,6 +22,7 @@ const MAPPING = {
   "settings.fill": "settings",
   "search.fill": "search",
   "gps-fixed.fill": "gps-fixed",
+  "delete.fill": "delete",
 } as unknown as IconMapping;
 
 /**
