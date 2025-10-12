@@ -4,13 +4,14 @@ import { ThemedText } from "@/components/themed-text";
 import { ThemedView } from "@/components/themed-view";
 import { City } from "@/models/city";
 import { useCityListStore, useMainCityStore } from "@/store/cityStore";
+import { useLanguageStore } from "@/store/languageStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { router } from "expo-router";
 
 export default function CityListModal() {
   const cityList: City[] = useCityListStore((store) => store.cityList);
   const setMainCity = useMainCityStore((store) => store.setMainCity);
-
+  const language = useLanguageStore((store) => store.language);
   const handleSelect = (city: City) => {
     setMainCity(city);
     router.push("/");
@@ -28,7 +29,6 @@ export default function CityListModal() {
             onPress={() => handleSelect(item)}
           >
             <ThemedText>{cityNameFormating(item)}</ThemedText>
-            {/* Adjust based on your city object structure */}
           </TouchableOpacity>
         )}
         ListEmptyComponent={
@@ -37,7 +37,7 @@ export default function CityListModal() {
               router.push("/");
             }}
           >
-            <ThemedText>No cities found (tap to return)</ThemedText>
+            <ThemedText>{language.noCityFound}.</ThemedText>
           </TouchableOpacity>
         }
       />

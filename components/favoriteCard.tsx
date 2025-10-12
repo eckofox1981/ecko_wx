@@ -1,5 +1,6 @@
 import { City } from "@/models/city";
 import { useFavoriteCitiesStore, useMainCityStore } from "@/store/cityStore";
+import { useLanguageStore } from "@/store/languageStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
@@ -10,6 +11,7 @@ import { IconSymbol } from "./ui/icon-symbol";
 export function FavoriteCard({ city }: { city: City }) {
   const setCity = useMainCityStore((store) => store.setMainCity);
   const setFavoCities = useFavoriteCitiesStore((store) => store.setFavoCities);
+  const language = useLanguageStore((store) => store.language);
 
   const goToTown = () => {
     setCity(city);
@@ -18,8 +20,10 @@ export function FavoriteCard({ city }: { city: City }) {
 
   const deleteCity = async () => {
     Alert.alert(
-      "DELETE CITY",
-      `You are about to delete ${cityNameFormating(city)}. Are you sure?`,
+      language.deleteCity,
+      `${language.youReAboutToDelete} ${cityNameFormating(city)}. ${
+        language.areYouSure
+      }?`,
       [
         {
           text: "DELETE",
@@ -28,7 +32,7 @@ export function FavoriteCard({ city }: { city: City }) {
             const json = jsonString ? JSON.parse(jsonString) : [];
 
             if (json.length === 0) {
-              Alert.alert("Error", "Something went wrong.");
+              Alert.alert(language.error, language.somethingWentWrong);
               return;
             }
 
@@ -48,7 +52,7 @@ export function FavoriteCard({ city }: { city: City }) {
           style: "default",
         },
         {
-          text: "ABORT",
+          text: language.abort,
           onPress: () => {
             return;
           },

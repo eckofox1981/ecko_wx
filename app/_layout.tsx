@@ -4,11 +4,11 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 
 import { AppTitle } from "@/components/appTitle";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import { useLanguageStore } from "@/store/languageStore";
 import { useFonts } from "expo-font";
 
 export const unstable_settings = {
@@ -20,6 +20,7 @@ export default function RootLayout() {
     titleFont: require("../assets/fonts/BonheurRoyale-Regular.ttf"),
   });
   const colorScheme = useColorScheme();
+  const language = useLanguageStore((store) => store.language);
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -31,19 +32,18 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen
-          name="modal"
-          options={{ presentation: "modal", title: "Modal" }}
-        />
-        <Stack.Screen
           name="cityListModal"
-          options={{ presentation: "modal", title: "Choose your city" }}
+          options={{ presentation: "modal", title: language.chooseYourCity }}
         />
         <Stack.Screen
           name="currentWeatherModal"
-          options={{ presentation: "modal", title: "Current weather" }}
+          options={{ presentation: "modal", title: language.currentWeather }}
         />
       </Stack>
-      <StatusBar style="auto" />
+      <Stack.Screen
+        name="forecastModal"
+        options={{ presentation: "modal", title: language.forecast }}
+      />
     </ThemeProvider>
   );
 }

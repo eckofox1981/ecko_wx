@@ -31,6 +31,31 @@ export class Language {
   precipitations: string;
   rainLastHour: string;
   snowLastHour: string;
+  couldNotFetchWeather: string;
+  couldNotFetchForecast: string;
+  duplicateCities: string;
+  YouVelreadyAddedThisCity: string;
+  cityAddedToFavorites: string;
+  wasAddedToFavorites: string;
+  error: string;
+  couldNotaveCity: string;
+  deleteCity: string;
+  youReAboutToDelete: string;
+  areYouSure: string;
+  deleteCapital: string;
+  somethingWentWrong: string;
+  abort: string;
+  monday: string;
+  tuesday: string;
+  wednesday: string;
+  thursday: string;
+  friday: string;
+  saturday: string;
+  sunday: string;
+  noCitiesAddedToFavos: string;
+  language: string;
+  chooseYourCity: string;
+  noCityFound: string;
 
   constructor(
     id: string,
@@ -64,7 +89,32 @@ export class Language {
     direction: string,
     precipitations: string,
     rainLastHour: string,
-    snowLastHour: string
+    snowLastHour: string,
+    couldNotFetchWeather: string,
+    couldNotFetchForecast: string,
+    duplicateCities: string,
+    YouVelreadyAddedThisCity: string,
+    cityAddedToFavorites: string,
+    wasAddedToFavorites: string,
+    error: string,
+    couldNotaveCity: string,
+    deleteCity: string,
+    youReAboutToDelete: string,
+    areYouSure: string,
+    deleteCapital: string,
+    somethingWentWrong: string,
+    abort: string,
+    monday: string,
+    tuesday: string,
+    wednesday: string,
+    thursday: string,
+    friday: string,
+    saturday: string,
+    sunday: string,
+    noCitiesAddedToFavos: string,
+    language: string,
+    chooseYourCity: string,
+    noCityFound: string
   ) {
     this.id = id;
     this.home = home;
@@ -99,5 +149,30 @@ export class Language {
     this.precipitations = precipitations;
     this.rainLastHour = rainLastHour;
     this.snowLastHour = snowLastHour;
+    this.couldNotFetchWeather = couldNotFetchWeather;
+    this.couldNotFetchForecast = couldNotFetchForecast;
+    this.duplicateCities = duplicateCities;
+    this.YouVelreadyAddedThisCity = YouVelreadyAddedThisCity;
+    this.cityAddedToFavorites = cityAddedToFavorites;
+    this.wasAddedToFavorites = wasAddedToFavorites;
+    this.error = error;
+    this.couldNotaveCity = couldNotaveCity;
+    this.deleteCity = deleteCity;
+    this.youReAboutToDelete = youReAboutToDelete;
+    this.areYouSure = areYouSure;
+    this.deleteCapital = deleteCapital;
+    this.somethingWentWrong = somethingWentWrong;
+    this.abort = abort;
+    this.monday = monday;
+    this.tuesday = tuesday;
+    this.wednesday = wednesday;
+    this.thursday = thursday;
+    this.friday = friday;
+    this.saturday = saturday;
+    this.sunday = sunday;
+    this.noCitiesAddedToFavos = noCitiesAddedToFavos;
+    this.language = language;
+    this.chooseYourCity = chooseYourCity;
+    this.noCityFound = noCityFound;
   }
 }

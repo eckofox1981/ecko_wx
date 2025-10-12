@@ -43,17 +43,16 @@ export function CurrentWeather() {
 
     upDateWeather()
       .then(setCurrentWeather)
-      .catch((error: string) => Alert.alert("Could not fetch weather!", error));
+      .catch((error: string) =>
+        Alert.alert(language.couldNotFetchWeather, error)
+      );
   }, [city, language]);
 
   const addToFavorite = async () => {
     const jsonString = await AsyncStorage.getItem("cities");
     const json: any[] = jsonString ? JSON.parse(jsonString) : [];
     if (json.includes(city)) {
-      Alert.alert(
-        "Duplicate cities",
-        "You've already added this city to your favorites."
-      );
+      Alert.alert(language.duplicateCities, language.YouVelreadyAddedThisCity);
       return;
     }
     const newCityList = [...json, city];
@@ -61,8 +60,8 @@ export function CurrentWeather() {
     await AsyncStorage.setItem("cities", JSON.stringify(newCityList))
       .then(() => {
         Alert.alert(
-          "City added to favorites",
-          `${cityNameFormating(city)} was added to your favorites.`
+          language.cityAddedToFavorites,
+          `${cityNameFormating(city)} ${language.wasAddedToFavorites}.`
         );
       })
       .catch((err) => {
@@ -71,10 +70,6 @@ export function CurrentWeather() {
           `Could not save city to favorites: ${err.message}`
         );
       });
-    Alert.alert(
-      "City added to favorites",
-      `${cityNameFormating(city)} was added to your favorites.`
-    );
     setFavoCities(newCityList);
   };
 
@@ -87,7 +82,11 @@ export function CurrentWeather() {
     ) {
       return;
     }
-    return <ThemedText>Rain last hour: {window.Math.floor(rain)}mm</ThemedText>;
+    return (
+      <ThemedText>
+        {language.rainLastHour}: {window.Math.floor(rain)}mm
+      </ThemedText>
+    );
   };
 
   const snow = (snow: number | null) => {

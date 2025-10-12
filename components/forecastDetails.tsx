@@ -14,13 +14,13 @@ export function ForecastDetails({
   const language = useLanguageStore((store) => store.language);
 
   const weekDays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    language.sunday,
+    language.monday,
+    language.tuesday,
+    language.wednesday,
+    language.thursday,
+    language.friday,
+    language.saturday,
   ];
 
   return (

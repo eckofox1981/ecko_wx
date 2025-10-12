@@ -1,4 +1,5 @@
 import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
+import { useLanguageStore } from "@/store/languageStore";
 import { timeFormating } from "@/utilities/timeFormating";
 import { Image, StyleSheet, Text, View } from "react-native";
 
@@ -13,14 +14,15 @@ export function ForecastCard({
   weather: string;
   temp: number;
 }) {
+  const language = useLanguageStore((store) => store.language);
   const weekDays = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    language.sunday,
+    language.monday,
+    language.tuesday,
+    language.wednesday,
+    language.thursday,
+    language.friday,
+    language.saturday,
   ];
 
   return (

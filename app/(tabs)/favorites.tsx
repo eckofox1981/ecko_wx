@@ -4,12 +4,14 @@ import { FavoriteCard } from "@/components/favoriteCard";
 import { ThemedText } from "@/components/themed-text";
 import { City } from "@/models/city";
 import { useFavoriteCitiesStore } from "@/store/cityStore";
+import { useLanguageStore } from "@/store/languageStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 
 export default function Favorites() {
   const favoCities = useFavoriteCitiesStore((store) => store.favoriteCities);
   const setFavoCities = useFavoriteCitiesStore((store) => store.setFavoCities);
+  const language = useLanguageStore((store) => store.language);
 
   useEffect(() => {
     const getFavorites = async () => {
@@ -30,14 +32,14 @@ export default function Favorites() {
 
   return (
     <View>
-      <ThemedText style={styles.title}>Favorites</ThemedText>
+      <ThemedText style={styles.title}>{language.favorites}</ThemedText>
       <FlatList
         data={favoCities}
         keyExtractor={(item) => `${item.lat}-${item.lon}-${Math.random()}`} //TODO: remove Math.random (there to fix duplicate issue)
         renderItem={({ item }) => <FavoriteCard city={item} />}
         ListEmptyComponent={
           <ThemedText style={styles.noCities}>
-            No cities added to favorites
+            {language.noCitiesAddedToFavos}
           </ThemedText>
         }
       />

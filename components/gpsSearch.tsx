@@ -33,7 +33,7 @@ export function GpsSearch() {
 
       setCity(locationCity);
     } catch (error: any) {
-      Alert.alert("Error setting city: ", error.message);
+      Alert.alert(language.error, error.message);
     }
   };
 

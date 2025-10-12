@@ -1,27 +1,51 @@
+import { english, french, swedish } from "@/assets/languages/languages";
 import { ThemedText } from "@/components/themed-text";
+import { Language } from "@/models/languages";
 import { useLanguageStore } from "@/store/languageStore";
 import { Button, StyleSheet, View } from "react-native";
 
 export default function Settings() {
   const setLanguage = useLanguageStore((store) => store.setLanguage);
   const language = useLanguageStore((store) => store.language);
+  const englishSelected: Language = english;
+  const frenchSelected: Language = french;
+  const swedishSelected: Language = swedish;
+
+  const languageSelection = (lang: Language) => {
+    setLanguage(lang);
+  };
 
   return (
     <View style={styles.main}>
-      <ThemedText style={styles.title}>Settings</ThemedText>
+      <ThemedText style={styles.title}>{language.settings}</ThemedText>
       <View style={styles.selection}>
-        <ThemedText style={styles.text}>Temperature units: </ThemedText>
+        <ThemedText style={styles.text}>{language.temperatures}: </ThemedText>
         <View style={{ gap: 5 }}>
           <Button title="Celsius" />
           <Button title="Farenheit" />
         </View>
       </View>
       <View style={styles.selection}>
-        <ThemedText style={styles.text}>Languages: </ThemedText>
+        <ThemedText style={styles.text}>{language.language}: </ThemedText>
         <View style={{ gap: 5 }}>
-          <Button title="English" />
-          <Button title="Français" />
-          <Button title="Svenska" />
+          <Button
+            title="English"
+            onPress={() => {
+              languageSelection(englishSelected);
+            }}
+          />
+          <Button
+            title="Français"
+            onPress={() => {
+              languageSelection(frenchSelected);
+            }}
+          />
+          <Button
+            title="Svenska"
+            onPress={() => {
+              languageSelection(swedishSelected);
+            }}
+          />
         </View>
       </View>
     </View>
