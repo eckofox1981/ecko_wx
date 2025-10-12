@@ -13,7 +13,7 @@ import { Alert, Dimensions, StyleSheet, View } from "react-native";
 export default function HomeScreen() {
   const setForecast = useForecastStore((store) => store.setForecast);
   const city = useMainCityStore((store) => store.mainCity);
-  const setTempUnit = useTempUnitStore((store) => store.setTempUnit);
+  const tempUnit = useTempUnitStore((store) => store.tempUnit);
   const language = useLanguageStore((store) => store.language);
 
   const screenSize: { height: number; width: number } =
@@ -21,16 +21,16 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const fetchForeCast = async () => {
-      const newForecast = await getForecast(city, language.id);
+      const newForecast = await getForecast(city, language.id, tempUnit);
       return newForecast;
     };
 
     fetchForeCast()
       .then(setForecast)
       .catch((error: string) =>
-        Alert.alert("Could not fetch forecast!", error)
+        Alert.alert(`${language.couldNotFetchForecast}!`, error)
       );
-  }, [city, language]);
+  }, [city, language, tempUnit]);
 
   return (
     <View style={styles.main}>

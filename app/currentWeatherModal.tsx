@@ -73,13 +73,13 @@ export default function CurrentWeatherModal() {
           </ThemedText>
           <View style={styles.data}>
             <ThemedText>
-              {language.average}: {currentWeather.mainTemp}°C
+              {language.average}: {currentWeather.mainTemp}
             </ThemedText>
             <ThemedText>
-              {language.minimum}: {currentWeather.mainTemp_min}°C
+              {language.minimum}: {currentWeather.mainTemp_min}
             </ThemedText>
             <ThemedText>
-              {language.maximum}: {currentWeather.mainTemp_max}°C
+              {language.maximum}: {currentWeather.mainTemp_max}
             </ThemedText>
           </View>
         </View>

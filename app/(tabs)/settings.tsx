@@ -2,11 +2,13 @@ import { english, french, swedish } from "@/assets/languages/languages";
 import { ThemedText } from "@/components/themed-text";
 import { Language } from "@/models/languages";
 import { useLanguageStore } from "@/store/languageStore";
+import { useTempUnitStore } from "@/store/tempUnitStore";
 import { Button, StyleSheet, View } from "react-native";
 
 export default function Settings() {
   const setLanguage = useLanguageStore((store) => store.setLanguage);
   const language = useLanguageStore((store) => store.language);
+  const setTempUnit = useTempUnitStore((store) => store.setTempUnit);
   const englishSelected: Language = english;
   const frenchSelected: Language = french;
   const swedishSelected: Language = swedish;
@@ -21,8 +23,8 @@ export default function Settings() {
       <View style={styles.selection}>
         <ThemedText style={styles.text}>{language.temperatures}: </ThemedText>
         <View style={{ gap: 5 }}>
-          <Button title="Celsius" />
-          <Button title="Farenheit" />
+          <Button title="Celsius" onPress={() => setTempUnit("celsius")} />
+          <Button title="Farenheit" onPress={() => setTempUnit("farenheit")} />
         </View>
       </View>
       <View style={styles.selection}>

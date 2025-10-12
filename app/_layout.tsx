@@ -39,11 +39,11 @@ export default function RootLayout() {
           name="currentWeatherModal"
           options={{ presentation: "modal", title: language.currentWeather }}
         />
+        <Stack.Screen
+          name="forecastModal"
+          options={{ presentation: "modal", title: language.forecast }}
+        />
       </Stack>
-      <Stack.Screen
-        name="forecastModal"
-        options={{ presentation: "modal", title: language.forecast }}
-      />
     </ThemeProvider>
   );
 }

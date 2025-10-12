@@ -3,6 +3,7 @@ import { getWeather } from "@/api/getWeather";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { useFavoriteCitiesStore, useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
+import { useTempUnitStore } from "@/store/tempUnitStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { timeFormating } from "@/utilities/timeFormating";
@@ -32,12 +33,13 @@ export function CurrentWeather() {
   );
   const favoCities = useFavoriteCitiesStore((store) => store.favoriteCities);
   const setFavoCities = useFavoriteCitiesStore((store) => store.setFavoCities);
+  const tempUnits = useTempUnitStore((store) => store.tempUnit);
   const screenSize: { height: number; width: number } =
     Dimensions.get("window");
 
   useEffect(() => {
     const upDateWeather = async () => {
-      const weather = await getWeather(city, `${language.id}`);
+      const weather = await getWeather(city, `${language.id}`, tempUnits);
       return weather;
     };
 
@@ -46,7 +48,7 @@ export function CurrentWeather() {
       .catch((error: string) =>
         Alert.alert(language.couldNotFetchWeather, error)
       );
-  }, [city, language]);
+  }, [city, language, tempUnits]);
 
   const addToFavorite = async () => {
     const jsonString = await AsyncStorage.getItem("cities");
@@ -147,7 +149,7 @@ export function CurrentWeather() {
     }
     return (
       <ThemedText>
-        {language.feelsLike}: {currentWeather.mainFeels_like}°C
+        {language.feelsLike}: {currentWeather.mainFeels_like}
       </ThemedText>
     );
   };
@@ -209,7 +211,7 @@ export function CurrentWeather() {
         </View>
         <View style={styles.rightContainer}>
           <ThemedText>
-            {language.temp}: {currentWeather.mainTemp}°C
+            {language.temp}: {currentWeather.mainTemp}
           </ThemedText>
           {feelLike568()}
           <Wind

@@ -12,7 +12,7 @@ export function ForecastCard({
   date: Date;
   icon: string;
   weather: string;
-  temp: number;
+  temp: string;
 }) {
   const language = useLanguageStore((store) => store.language);
   const weekDays = [
@@ -39,7 +39,7 @@ export function ForecastCard({
         }}
       />
       <Text style={styles.text}>{weather}</Text>
-      <Text style={styles.text}>{temp}'C</Text>
+      <Text style={styles.text}>{temp}</Text>
     </View>
   );
 }

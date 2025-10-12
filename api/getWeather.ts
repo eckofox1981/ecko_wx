@@ -1,12 +1,13 @@
 import { City } from "@/models/city";
 import { CurrentWeather, ThreeHoursForeCast } from "@/models/weather";
+import { tempConversion } from "@/utilities/tempConversion";
 import {
   OPEN_WX_API_KEY,
   WEATHER_CURRENT_WEATHER_URL,
   WEATHER_FORECAST_URL,
 } from "./API_KEYS";
 
-export async function getWeather(city: City, lang: string) {
+export async function getWeather(city: City, lang: string, tempUnits: string) {
   const callURL: string = WEATHER_CURRENT_WEATHER_URL(city, lang);
 
   try {
@@ -25,10 +26,10 @@ export async function getWeather(city: City, lang: string) {
       json.weather[0].main,
       json.weather[0].description,
       json.weather[0].icon,
-      json.main.temp,
-      json.main.feels_like,
-      json.main.temp_min,
-      json.main.temp_max,
+      tempConversion(tempUnits, json.main.temp),
+      tempConversion(tempUnits, json.main.feels_like),
+      tempConversion(tempUnits, json.main.temp_min),
+      tempConversion(tempUnits, json.main.temp_max),
       json.main.pressure,
       json.main.humidity,
       json.main.sea_level,
@@ -50,7 +51,7 @@ export async function getWeather(city: City, lang: string) {
   }
 }
 
-export async function getForecast(city: City, lang: string) {
+export async function getForecast(city: City, lang: string, tempUnits: string) {
   const callURl: string = `${WEATHER_FORECAST_URL(
     city,
     lang
@@ -71,10 +72,10 @@ export async function getForecast(city: City, lang: string) {
       (w: any) =>
         new ThreeHoursForeCast(
           new Date(w.dt * 1000),
-          w.main.temp,
-          w.main.feels_like,
-          w.main.temp_min,
-          w.main.temp_max,
+          tempConversion(tempUnits, w.main.temp),
+          tempConversion(tempUnits, w.main.feels_like),
+          tempConversion(tempUnits, w.main.temp_min),
+          tempConversion(tempUnits, w.main.temp_max),
           w.main.pressure,
           w.main.humidity,
           w.main.sea_level,

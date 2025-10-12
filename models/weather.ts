@@ -2,10 +2,10 @@ export class CurrentWeather {
   weatherMain: string;
   weatherDescription: string;
   weatherIcon: string;
-  mainTemp: number;
-  mainFeels_like: number;
-  mainTemp_min: number;
-  mainTemp_max: number;
+  mainTemp: string;
+  mainFeels_like: string;
+  mainTemp_min: string;
+  mainTemp_max: string;
   mainPressure: number;
   mainHumidity: number;
   mainSea_level: number;
@@ -23,10 +23,10 @@ export class CurrentWeather {
     weatherMain: string,
     weatherDescription: string,
     weatherIcon: string,
-    mainTemp: number,
-    mainFeels_like: number,
-    mainTemp_min: number,
-    mainTemp_max: number,
+    mainTemp: string,
+    mainFeels_like: string,
+    mainTemp_min: string,
+    mainTemp_max: string,
     mainPressure: number,
     mainHumidity: number,
     mainSea_level: number,
@@ -64,10 +64,10 @@ export class CurrentWeather {
 
 export class ThreeHoursForeCast {
   dt: Date;
-  mainTemp: number;
-  mainFeels_like: number;
-  mainTemp_min: number;
-  mainTemp_max: number;
+  mainTemp: string;
+  mainFeels_like: string;
+  mainTemp_min: string;
+  mainTemp_max: string;
   mainPressure: number;
   mainSea_level: number;
   mainHumidity: number;
@@ -85,10 +85,10 @@ export class ThreeHoursForeCast {
 
   constructor(
     dt: Date,
-    mainTemp: number,
-    mainFeels_like: number,
-    mainTemp_min: number,
-    mainTemp_max: number,
+    mainTemp: string,
+    mainFeels_like: string,
+    mainTemp_min: string,
+    mainTemp_max: string,
     mainPressure: number,
     mainHumidity: number,
     mainSea_level: number,

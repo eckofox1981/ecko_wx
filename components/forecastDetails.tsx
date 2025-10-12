@@ -58,13 +58,16 @@ export function ForecastDetails({
             gust={forecast.windGust}
           />
           <ThemedText>
-            {language.temp}: {forecast.mainTemp}°C
+            {language.temp}: {forecast.mainTemp}
           </ThemedText>
           <ThemedText>
-            {language.feelsLike}: {forecast.mainFeels_like}°C
+            {language.feelsLike}: {forecast.mainFeels_like}
           </ThemedText>
           <ThemedText>
-            {language.minimum}: {forecast.mainTemp_min}°C
+            {language.minimum}: {forecast.mainTemp_min}
+          </ThemedText>
+          <ThemedText>
+            {language.maximum}: {forecast.mainTemp_max}
           </ThemedText>
           <ThemedText>
             {language.precipitations} 3Hrs: {forecast.pop}mm
