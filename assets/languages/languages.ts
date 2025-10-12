@@ -128,7 +128,7 @@ export const french: Language = new Language(
   "Trouvez votre ville",
   "Météo à votre position",
   "Heure",
-  "Temp,",
+  "Temp.",
   "Ressenti",
   "Vent",
   "Rafale",
