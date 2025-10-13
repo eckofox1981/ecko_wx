@@ -1,4 +1,5 @@
 import { getForecast } from "@/api/getWeather";
+import { english } from "@/assets/languages/languages";
 import { CurrentWeather } from "@/components/currentWeather";
 import { ForecastFeed } from "@/components/forecastFeed";
 import { GpsSearch } from "@/components/gpsSearch";
@@ -7,6 +8,7 @@ import { useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useTempUnitStore } from "@/store/tempUnitStore";
 import { useForecastStore } from "@/store/weatherStore";
+import { languageGetter } from "@/utilities/languageGetter";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { Alert, StyleSheet, View } from "react-native";
@@ -17,6 +19,39 @@ export default function HomeScreen() {
   const tempUnit = useTempUnitStore((store) => store.tempUnit);
   const setTempUnit = useTempUnitStore((store) => store.setTempUnit);
   const language = useLanguageStore((store) => store.language);
+  const setLanguage = useLanguageStore((store) => store.setLanguage);
+
+  useEffect(() => {
+    const checkTempUnit = async () => {
+      const localTempUnit = await AsyncStorage.getItem("tempUnit");
+      if (!localTempUnit) {
+        return "celsius";
+      }
+
+      return localTempUnit;
+    };
+
+    const checkLanguage = async () => {
+      const localLanguageId = await AsyncStorage.getItem("language");
+      if (!localLanguageId) {
+        return english;
+      }
+
+      return languageGetter(localLanguageId);
+    };
+
+    checkTempUnit()
+      .then(setTempUnit)
+      .catch((err) => {
+        Alert.alert(language.error, "Could not set temperature unit. " + err); // catch is theoreticcaly redundant because of if-statement above
+      });
+
+    checkLanguage()
+      .then(setLanguage)
+      .catch((err) => {
+        Alert.alert(language.error, "Could not set language. " + err); // catch is theoreticcaly redundant because of if-statement above
+      });
+  }, []);
 
   useEffect(() => {
     const fetchForeCast = async () => {
@@ -30,22 +65,6 @@ export default function HomeScreen() {
         Alert.alert(`${language.couldNotFetchForecast}!`, error)
       );
   }, [city, language, tempUnit]);
-
-  useEffect(() => {
-    const checkTempUnit = async () => {
-      const localTempUnit = await AsyncStorage.getItem("tempUnit");
-      if (!localTempUnit) {
-        return "celsius";
-      }
-
-      return localTempUnit;
-    };
-    checkTempUnit()
-      .then(setTempUnit)
-      .catch((err) => {
-        Alert.alert(language.error, "Could not set temperature unit. " + err); // catch is theoreticcaly redundant because of if-statement above
-      });
-  }, []);
 
   return (
     <View style={styles.main}>

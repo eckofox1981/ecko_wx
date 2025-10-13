@@ -14,8 +14,9 @@ export default function Settings() {
   const frenchSelected: Language = french;
   const swedishSelected: Language = swedish;
 
-  const languageSelection = (lang: Language) => {
+  const languageSelection = async (lang: Language) => {
     setLanguage(lang);
+    await AsyncStorage.setItem("language", lang.id);
   };
 
   const saveTempUnit = async (tempUnit: string) => {
