@@ -17,7 +17,7 @@ export function ForecastFeed() {
   const forecast = useForecastStore((store) => store.forecast);
   const screenSize: { height: number; width: number } =
     Dimensions.get("window");
-  const currentDataAndTabHeight: number = 590;
+  const currentDataAndTabHeight: number = 585;
   const forecastFeedHeight: number =
     screenSize.height - currentDataAndTabHeight;
   const numberOfRows: number = Math.floor(forecastFeedHeight / 150);
