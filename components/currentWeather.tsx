@@ -281,6 +281,7 @@ const styles = StyleSheet.create({
     margin: "auto",
     textTransform: "capitalize",
     fontWeight: 600,
+    textAlign: "center",
   },
   sunsriseContainer: {
     flexDirection: "row",
