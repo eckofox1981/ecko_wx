@@ -7,6 +7,7 @@ import { useTempUnitStore } from "@/store/tempUnitStore";
 import { useCurrentWeatherStore } from "@/store/weatherStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { timeFormating } from "@/utilities/timeFormating";
+import Feather from "@expo/vector-icons/Feather";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useEffect } from "react";
@@ -109,12 +110,18 @@ export function CurrentWeather() {
     }
     return (
       <View>
-        <ThemedText style={styles.sunrise}>
-          {language.sunrise}: {timeFormating(currentWeather.sysSunrise)}
-        </ThemedText>
-        <ThemedText style={styles.sunrise}>
-          {language.sunset}: {timeFormating(currentWeather.sysSunset)}
-        </ThemedText>
+        <View style={styles.sunsriseContainer}>
+          <Feather name="sunrise" size={24} color="orange" />
+          <ThemedText style={styles.sunrise}>
+            {timeFormating(currentWeather.sysSunrise)}
+          </ThemedText>
+        </View>
+        <View style={styles.sunsriseContainer}>
+          <Feather name="sunset" size={24} color="blue" />
+          <ThemedText style={styles.sunrise}>
+            {timeFormating(currentWeather.sysSunset)}
+          </ThemedText>
+        </View>
       </View>
     );
   };
@@ -274,6 +281,12 @@ const styles = StyleSheet.create({
     margin: "auto",
     textTransform: "capitalize",
     fontWeight: 600,
+  },
+  sunsriseContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    gap: 5,
   },
   sunrise: {
     fontStyle: "italic",
