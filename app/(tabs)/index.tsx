@@ -9,7 +9,7 @@ import { useTempUnitStore } from "@/store/tempUnitStore";
 import { useForecastStore } from "@/store/weatherStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
-import { Alert, Dimensions, StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   const setForecast = useForecastStore((store) => store.setForecast);
@@ -17,9 +17,6 @@ export default function HomeScreen() {
   const tempUnit = useTempUnitStore((store) => store.tempUnit);
   const setTempUnit = useTempUnitStore((store) => store.setTempUnit);
   const language = useLanguageStore((store) => store.language);
-
-  const screenSize: { height: number; width: number } =
-    Dimensions.get("window");
 
   useEffect(() => {
     const fetchForeCast = async () => {
