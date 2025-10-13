@@ -3,6 +3,7 @@ import { ThemedText } from "@/components/themed-text";
 import { Language } from "@/models/languages";
 import { useLanguageStore } from "@/store/languageStore";
 import { useTempUnitStore } from "@/store/tempUnitStore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, StyleSheet, View } from "react-native";
 
 export default function Settings() {
@@ -17,14 +18,19 @@ export default function Settings() {
     setLanguage(lang);
   };
 
+  const saveTempUnit = async (tempUnit: string) => {
+    setTempUnit(tempUnit);
+    await AsyncStorage.setItem("tempUnit", tempUnit);
+  };
+
   return (
     <View style={styles.main}>
       <ThemedText style={styles.title}>{language.settings}</ThemedText>
       <View style={styles.selection}>
         <ThemedText style={styles.text}>{language.temperatures}: </ThemedText>
         <View style={{ gap: 5 }}>
-          <Button title="Celsius" onPress={() => setTempUnit("celsius")} />
-          <Button title="Farenheit" onPress={() => setTempUnit("farenheit")} />
+          <Button title="Celsius" onPress={() => saveTempUnit("celsius")} />
+          <Button title="Farenheit" onPress={() => saveTempUnit("farenheit")} />
         </View>
       </View>
       <View style={styles.selection}>

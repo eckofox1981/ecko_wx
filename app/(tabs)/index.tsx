@@ -7,6 +7,7 @@ import { useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useTempUnitStore } from "@/store/tempUnitStore";
 import { useForecastStore } from "@/store/weatherStore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { Alert, Dimensions, StyleSheet, View } from "react-native";
 
@@ -14,6 +15,7 @@ export default function HomeScreen() {
   const setForecast = useForecastStore((store) => store.setForecast);
   const city = useMainCityStore((store) => store.mainCity);
   const tempUnit = useTempUnitStore((store) => store.tempUnit);
+  const setTempUnit = useTempUnitStore((store) => store.setTempUnit);
   const language = useLanguageStore((store) => store.language);
 
   const screenSize: { height: number; width: number } =
@@ -31,6 +33,22 @@ export default function HomeScreen() {
         Alert.alert(`${language.couldNotFetchForecast}!`, error)
       );
   }, [city, language, tempUnit]);
+
+  useEffect(() => {
+    const checkTempUnit = async () => {
+      const localTempUnit = await AsyncStorage.getItem("tempUnit");
+      if (!localTempUnit) {
+        return "celsius";
+      }
+
+      return localTempUnit;
+    };
+    checkTempUnit()
+      .then(setTempUnit)
+      .catch((err) => {
+        Alert.alert(language.error, "Could not set temperature unit. " + err); // catch is theoreticcaly redundant because of if-statement above
+      });
+  }, []);
 
   return (
     <View style={styles.main}>
