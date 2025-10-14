@@ -5,6 +5,7 @@ import { cityNameFormating } from "@/utilities/cityNameFormating";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
+import { CityMap } from "./cityMap";
 import { ThemedText } from "./themed-text";
 import { IconSymbol } from "./ui/icon-symbol";
 
@@ -69,8 +70,7 @@ export function FavoriteCard({ city }: { city: City }) {
       </TouchableOpacity>
       <TouchableOpacity style={styles.container} onPress={goToTown}>
         <ThemedText style={styles.name}>{cityNameFormating(city)}</ThemedText>
-        <ThemedText style={styles.coordinate}>Lat.: {city.lat}</ThemedText>
-        <ThemedText style={styles.coordinate}>Long.: {city.lon}</ThemedText>
+        <CityMap city={city} size={100} />
       </TouchableOpacity>
     </View>
   );
@@ -89,14 +89,12 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 5,
     flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   name: {
     fontWeight: 600,
     alignSelf: "flex-start",
     marginLeft: 10,
-  },
-  coordinate: {
-    fontStyle: "italic",
-    alignSelf: "flex-end",
   },
 });
