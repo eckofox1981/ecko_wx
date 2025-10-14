@@ -22,18 +22,8 @@ export function WEATHER_CURRENT_WEATHER_URL(city: City, lang: string) {
 export function WEATHER_FORECAST_URL(city: City, lang: string) {
   const lat: number = Math.floor(city.lat * 100) / 100;
   const lon: number = Math.floor(city.lon * 100) / 100;
-  console.log(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&lang=${lang}`
-  );
-
   return `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&lang=${lang}`;
 }
-/*
-lang:
-en : english,
-fr: french,
-sv, se: swedish
-*/
 
 export function GET_WEATHER_ICON_URL(icon: string) {
   return `https://openweathermap.org/img/wn/${icon}.png`;
