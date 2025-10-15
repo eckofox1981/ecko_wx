@@ -1,6 +1,7 @@
 import { GET_WEATHER_ICON_URL } from "@/api/API_KEYS";
 import { getWeather } from "@/api/getWeather";
 import { IconSymbol } from "@/components/ui/icon-symbol";
+import { City } from "@/models/city";
 import { useFavoriteCitiesStore, useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { useTempUnitStore } from "@/store/tempUnitStore";
@@ -54,7 +55,22 @@ export function CurrentWeather() {
   const addToFavorite = async () => {
     const jsonString = await AsyncStorage.getItem("cities");
     const json: any[] = jsonString ? JSON.parse(jsonString) : [];
-    if (json.includes(city)) {
+    const currentCityList: City[] = json.map(
+      (city) =>
+        new City(city.name, city.lat, city.lon, city.country, city.state)
+    );
+
+    const isDuplicate = currentCityList.some(
+      //NOTES ON some():checks whether at least one element in an array meets a certain condition, returns a boolean (med predicate)
+      (c) =>
+        c.name === city.name &&
+        c.lat === city.lat &&
+        c.lon === city.lon &&
+        c.country === city.country &&
+        c.state === city.state
+    );
+
+    if (isDuplicate) {
       Alert.alert(language.duplicateCities, language.YouVelreadyAddedThisCity);
       return;
     }
