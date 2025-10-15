@@ -74,7 +74,13 @@ export function FavoriteCard({ city }: { city: City }) {
         <IconSymbol name="delete.fill" size={40} color={"#c40000ff"} />
       </TouchableOpacity>
       <TouchableOpacity style={styles.container} onPress={goToTown}>
-        <ThemedText style={styles.name}>{cityNameFormating(city)}</ThemedText>
+        <View style={styles.nameContainer}>
+          <ThemedText style={styles.name}>{city.name},</ThemedText>
+          {city?.state && (
+            <ThemedText style={styles.name}>{city.state},</ThemedText>
+          )}
+          <ThemedText style={styles.name}>{city.country}</ThemedText>
+        </View>
         <CityMap city={city} size={100} />
       </TouchableOpacity>
     </View>
@@ -96,6 +102,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  nameContainer: {
+    justifyContent: "center",
   },
   name: {
     fontWeight: 600,
