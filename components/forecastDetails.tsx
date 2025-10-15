@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     alignSelf: "center",
-    gap: 20,
+    gap: 10,
     marginBottom: 5,
   },
   leftContainer: {

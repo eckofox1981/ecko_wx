@@ -25,9 +25,7 @@ export default function CurrentWeatherModal() {
 
   return (
     <View style={styles.main}>
-      <ThemedText style={styles.title}>
-        {language.currentWeather} {city.name}
-      </ThemedText>
+      <ThemedText style={styles.title}>{city.name}</ThemedText>
       <View style={styles.sunriset}>
         <ThemedText style={styles.sunriset}>
           {language.sunrise}: {timeFormating(currentWeather.sysSunrise)} -{" "}
