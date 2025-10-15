@@ -6,9 +6,10 @@ You will need your API KEY from Open Weather.
 ## Features
 
 - Search cities by name
-- Use GPS to see weather where you are
+- Use your GPS-location to see weather where you are
 - Access current weather or 5-days forecast
 - Save your favorite cities for quick access
+- Remove a favorite city
 - Choose your unit of temperature (Celsius or Farenheit)
 - Choose English, French or Swedish as a display language
 
