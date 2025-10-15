@@ -15,6 +15,10 @@ import {
   View,
 } from "react-native";
 
+/**
+ * displays when CurrentWeather component has been tapped/clicked in HomeScreen
+ * @returns a detailed version of the currrent weather for the active city
+ */
 export default function CurrentWeatherModal() {
   const city = useMainCityStore((store) => store.mainCity);
   const currentWeather = useCurrentWeatherStore(

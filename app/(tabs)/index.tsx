@@ -13,6 +13,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 
+/**
+ * upon mounting relevant data is gathered and set as globalstate (zustand):
+ *  - language preference
+ *  - temperature unit preference
+ * current weather is fetch in its own component (saved in global state)
+ * forecast are fetch as globalstate here and displayed as ForecastCard in Forecastfeed.
+ * @returns HomeScreen displaying currentWeather for selected city (default paris) and forecast summary adapted to screen size
+ */
 export default function HomeScreen() {
   const setForecast = useForecastStore((store) => store.setForecast);
   const city = useMainCityStore((store) => store.mainCity);

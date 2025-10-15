@@ -2,6 +2,11 @@ import { City } from "@/models/city";
 import { StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 
+/**
+ * @param size (of the square, if other shape needed will have to be updated to width/height)
+ * @param city (used for lat/long)
+ * @returns a zoomed out map of the city with a red dot pointing out its location
+ */
 export function CityMap({ city, size }: { city: City; size: number }) {
   return (
     <View>

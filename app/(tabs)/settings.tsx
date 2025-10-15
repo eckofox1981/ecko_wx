@@ -6,6 +6,13 @@ import { useTempUnitStore } from "@/store/tempUnitStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Button, StyleSheet, View } from "react-native";
 
+/**
+ * user can here set its setting preference:
+ *  - temperature unit (Celsius or Farenheit)
+ *  - language (english, french, swedish)
+ * preferences are saved in localstorage for next use of the app
+ * @returns settings tab
+ */
 export default function Settings() {
   const setLanguage = useLanguageStore((store) => store.setLanguage);
   const language = useLanguageStore((store) => store.language);

@@ -24,6 +24,12 @@ import {
 import { ThemedText } from "./themed-text";
 import { Wind } from "./wind";
 
+/**
+ * fetches current weather for active city sets as globalstate
+ * checks screendimension an add/removes data accordingly
+ * responsiveness function named with  [functionName]568
+ * @returns a summarized version of the current weather for the active city
+ */
 export function CurrentWeather() {
   const language = useLanguageStore((store) => store.language);
   const city = useMainCityStore((store) => store.mainCity);
@@ -52,6 +58,11 @@ export function CurrentWeather() {
       );
   }, [city, language, tempUnits]);
 
+  /**
+   * saves city to favorite list in localstorage and globalstate
+   * checks first for duplicate, if duplicate: Alerts user and cancel function
+   * @returns Alert to confirm city saved
+   */
   const addToFavorite = async () => {
     const jsonString = await AsyncStorage.getItem("cities");
     const json: any[] = jsonString ? JSON.parse(jsonString) : [];
@@ -92,6 +103,7 @@ export function CurrentWeather() {
     setFavoCities(newCityList);
   };
 
+  // display rains data if it exists or screen height is more than 600
   const rain = (rain: number | null) => {
     if (
       rain === 0 ||
@@ -108,18 +120,7 @@ export function CurrentWeather() {
     );
   };
 
-  const snow = (snow: number | null) => {
-    if (
-      snow === 0 ||
-      snow === undefined ||
-      snow === null ||
-      screenSize.height < 600
-    ) {
-      return;
-    }
-    return <ThemedText>Snow last hour: {window.Math.floor(snow)}mm</ThemedText>;
-  };
-
+  //for small screens space is save by not displaying sunrise/sunset
   const sunrise_sunset568 = () => {
     if (screenSize.height <= 568) {
       return;
@@ -142,6 +143,7 @@ export function CurrentWeather() {
     );
   };
 
+  //for small screens space is save simplifying bookmark button
   const bookmarkButton568 = () => {
     if (screenSize.height <= 568) {
       return (
@@ -159,6 +161,7 @@ export function CurrentWeather() {
     );
   };
 
+  //for small screens space is save adjusting icon size
   const iconSize = () => {
     if (screenSize.height <= 568) {
       return 50;
@@ -166,6 +169,7 @@ export function CurrentWeather() {
     return 100;
   };
 
+  //for small screens space is save by not displaying "feels like" temperature
   const feelLike568 = () => {
     if (screenSize.height <= 568) {
       return;
@@ -177,6 +181,7 @@ export function CurrentWeather() {
     );
   };
 
+  //for small screens space is save by not displaying pressure
   const pressure568 = () => {
     if (screenSize.height <= 568) {
       return;
@@ -188,6 +193,7 @@ export function CurrentWeather() {
     );
   };
 
+  //for small screens space is save by not displaying visbility
   const visibility568 = () => {
     if (screenSize.height <= 568) {
       return;

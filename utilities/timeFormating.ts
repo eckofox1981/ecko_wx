@@ -1,3 +1,8 @@
+/**
+ * Formats Date to display time properly (ex: 02:09 instead of 2:9)
+ * @param time : Date
+ * @returns string [hours] + : + [minutes]
+ */
 export function timeFormating(time: Date) {
   let hours: string;
   let minutes: string;

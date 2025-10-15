@@ -9,6 +9,11 @@ import { CityMap } from "./cityMap";
 import { ThemedText } from "./themed-text";
 import { IconSymbol } from "./ui/icon-symbol";
 
+/**
+ * a very simple card including city name, state(if exists), country and a zoomed out map marked with a dot
+ * @param city
+ * @returns FavortieCard (of the city saved in local storage)
+ */
 export function FavoriteCard({ city }: { city: City }) {
   const setCity = useMainCityStore((store) => store.setMainCity);
   const setFavoCities = useFavoriteCitiesStore((store) => store.setFavoCities);

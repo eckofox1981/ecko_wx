@@ -3,6 +3,13 @@ import { useLanguageStore } from "@/store/languageStore";
 import { timeFormating } from "@/utilities/timeFormating";
 import { Image, StyleSheet, Text, View } from "react-native";
 
+/**
+ * a very simplified display of the 3 hour forecast
+ * @param Date (to display day of week and time)
+ * @param icon (for quick weather identification by user)
+ * @param temp (assumed to be most basic information user wants)
+ * @returns ForecastCard
+ */
 export function ForecastCard({
   date,
   icon,

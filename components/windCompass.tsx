@@ -1,6 +1,12 @@
 import { View } from "react-native";
 import Svg, { G, Path } from "react-native-svg";
 
+/**
+ * uses two svg superimposed (through margins set to negative)
+ * the second SVG is an arrow rotating to show the direction the wind is pointing at
+ * @param degree (will rotate arrow after adding 180deg since wind)
+ * @returns a SVG circle with a arrow pointing at where the wind is blowing to
+ */
 export function WindCompass({
   degree,
   size,

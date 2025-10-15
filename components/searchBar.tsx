@@ -6,6 +6,11 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 
+/**
+ * text input for user to search for cities
+ * navigates (router.push) to cityListModal
+ * @returns
+ */
 export function SearchBar() {
   const [query, setQuery] = useState("");
   const setCityList = useCityListStore((store) => store.setCityList);

@@ -8,6 +8,11 @@ export type otherProps = {
   name?: string;
 };
 
+/**
+ * used to change color of icon depending on theme
+ * unfortunately only used for gps icon gpsSearch.ts
+ * @returns an Icon adapted to theme
+ */
 export function ThemedIcon({
   size,
   name,

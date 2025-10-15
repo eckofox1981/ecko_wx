@@ -12,6 +12,12 @@ import {
 import { ForecastCard } from "./forecastCard";
 import { ThemedText } from "./themed-text";
 
+/**
+ * displayed in HomeScreen
+ * adapts to small screens
+ * if screen very small (ex: iPhone4); only displays a button to ForecastModal
+ * @returns a varying number of ForeCastCard
+ */
 export function ForecastFeed() {
   const language = useLanguageStore((store) => store.language);
   const forecast = useForecastStore((store) => store.forecast);
@@ -26,6 +32,7 @@ export function ForecastFeed() {
     return forecast.slice(0, numberOfRows * 3);
   };
 
+  //responsiveness caculated through basic check + trial and error
   const PublishForecastCards = () => {
     if (screenSize.height < 674) {
       return (

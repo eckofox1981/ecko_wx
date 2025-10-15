@@ -8,6 +8,10 @@ import { useLanguageStore } from "@/store/languageStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { router } from "expo-router";
 
+/**
+ * displays when user searches for city.
+ * @returns A clickable list of city with the same name but different country/state (or both)
+ */
 export default function CityListModal() {
   const cityList: City[] = useCityListStore((store) => store.cityList);
   const setMainCity = useMainCityStore((store) => store.setMainCity);

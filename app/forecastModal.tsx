@@ -6,6 +6,10 @@ import { useForecastStore } from "@/store/weatherStore";
 import { cityNameFormating } from "@/utilities/cityNameFormating";
 import { FlatList, StyleSheet } from "react-native";
 
+/**
+ * displays when ForeCastFeed is taped in index
+ * @returns a list of detailed forecast (ForecastDetails) for the active city
+ */
 export default function ForecastModal() {
   const forecast = useForecastStore((store) => store.forecast);
   const city = useMainCityStore((store) => store.mainCity);

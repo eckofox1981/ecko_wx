@@ -8,11 +8,20 @@ import { useLanguageStore } from "@/store/languageStore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
 
+/**
+ * list favorites citied in localstorage and adds them to globalsates (zustand)
+ * I found the use of globalstate to be simpler when handling deletion.
+ * @returns list of Favoritecard or info text
+ */
 export default function Favorites() {
   const favoCities = useFavoriteCitiesStore((store) => store.favoriteCities);
   const setFavoCities = useFavoriteCitiesStore((store) => store.setFavoCities);
   const language = useLanguageStore((store) => store.language);
 
+  /**
+   * upon mounting AsyncStorage is used but further handling of favorite cities
+   * is handled through globalstate
+   */
   useEffect(() => {
     const getFavorites = async () => {
       const jsonString = await AsyncStorage.getItem("cities");

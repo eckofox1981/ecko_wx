@@ -8,6 +8,11 @@ import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
 import { ThemedIcon } from "./themed-icon";
 import { ThemedText } from "./themed-text";
 
+/**
+ * allows user to detect his/her location for weather information
+ * will ask for permission
+ * @returns the "use you location text and logo"
+ */
 export function GpsSearch() {
   const language = useLanguageStore((store) => store.language);
   const [status, requestPermission] = Location.useForegroundPermissions();

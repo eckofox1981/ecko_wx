@@ -6,6 +6,11 @@ import { Image, StyleSheet, View } from "react-native";
 import { ThemedText } from "./themed-text";
 import { Wind } from "./wind";
 
+/**
+ * a full detail card of the three hours forecast disaplayed in ForeCastModal
+ * @param ThreeoursForecast (to be displayed)
+ * @returns ForecastDetails card
+ */
 export function ForecastDetails({
   forecast,
 }: {

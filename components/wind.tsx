@@ -11,6 +11,11 @@ interface WindProps {
   children?: React.ReactNode;
 }
 
+/**
+ * displays wind information using WindCompass
+ * @param wind information
+ * @returns wind data with an arrow pointing in the same direction of the wind.
+ */
 export function Wind({ speed, degree, gust, style, children }: WindProps) {
   const language = useLanguageStore((store) => store.language);
   return (
