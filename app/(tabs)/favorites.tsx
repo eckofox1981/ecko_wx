@@ -40,7 +40,7 @@ export default function Favorites() {
   }, []);
 
   return (
-    <View>
+    <View style={styles.scrollViewContainer}>
       <ThemedText style={styles.title}>{language.favorites}</ThemedText>
       <FlatList
         data={favoCities}
@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 800,
     alignSelf: "center",
+  },
+  scrollViewContainer: {
+    paddingBottom: 30,
   },
   noCities: {
     alignSelf: "center",
