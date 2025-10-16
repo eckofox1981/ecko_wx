@@ -102,13 +102,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   nameContainer: {
     justifyContent: "center",
+    flex: 1,
+    marginRight: 5,
   },
   name: {
     fontWeight: 600,
-    alignSelf: "flex-start",
     marginLeft: 10,
   },
 });
