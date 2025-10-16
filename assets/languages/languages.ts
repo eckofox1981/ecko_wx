@@ -66,7 +66,7 @@ export const swedish: Language = new Language(
   "Favoriter",
   "inställningar",
   "Sök din stad",
-  "Få vädret där dun befinner dig",
+  "Få vädret där du befinner dig",
   "Tid",
   "Temp.",
   "Känns som",

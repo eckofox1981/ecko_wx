@@ -32,7 +32,7 @@ export function FavoriteCard({ city }: { city: City }) {
       }?`,
       [
         {
-          text: "DELETE",
+          text: `${language.deleteCity}`,
           onPress: async () => {
             const jsonString = await AsyncStorage.getItem("cities");
             const json = jsonString ? JSON.parse(jsonString) : [];
