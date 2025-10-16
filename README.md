@@ -17,7 +17,7 @@ You will need your API KEY from Open Weather.
 
 <!-- prettier-ignore-start -->
 ![App Demo](./readme_files/demo.gif)
-![Dark Mode Example](./readme_files/darkmode_example.jpg)
+<img src="./readme_files/darkmode_example.jpg" width="240" alt="Dark Mode Example">
 <!-- prettier-ignore-end -->
 
 ## Run it on your phone with the Expo Go app
