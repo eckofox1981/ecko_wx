@@ -13,6 +13,12 @@ You will need your API KEY from Open Weather.
 - Choose your unit of temperature (Celsius or Farenheit)
 - Choose English, French or Swedish as a display language
 
+### DEMO VIDEO
+
+<!-- prettier-ignore-start -->
+![App Demo](./video(for_read_me)/demo.gif)
+<!-- prettier-ignore-end -->
+
 ## Run it on your phone with the Expo Go app
 
 this app is not published on any App-store. you can test it on your mobile with the Expo Go app ([Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_US) or [App Store](https://apps.apple.com/us/app/expo-go/id982107779)).
