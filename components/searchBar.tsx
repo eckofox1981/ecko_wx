@@ -1,6 +1,6 @@
 import { getCityList } from "@/api/getCities";
 import { IconSymbol } from "@/components/ui/icon-symbol";
-import { useCityListStore } from "@/store/cityStore";
+import { useCityListStore, useMainCityStore } from "@/store/cityStore";
 import { useLanguageStore } from "@/store/languageStore";
 import { router } from "expo-router";
 import { useState } from "react";
@@ -13,13 +13,19 @@ import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
  */
 export function SearchBar() {
   const [query, setQuery] = useState("");
+  const cityList = useCityListStore((store) => store.cityList);
+  const setCity = useMainCityStore((store) => store.setMainCity);
   const setCityList = useCityListStore((store) => store.setCityList);
   const language = useLanguageStore((store) => store.language);
 
   const handlePress = () => {
     getCityList(query).then(setCityList);
     setQuery("");
-    router.push("/cityListModal");
+    if (cityList.length == 1) {
+      setCity(cityList[0]);
+    } else {
+      router.push("/cityListModal");
+    }
   };
 
   return (
