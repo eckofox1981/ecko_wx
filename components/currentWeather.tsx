@@ -295,6 +295,7 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 180,
     alignSelf: "center",
+    marginTop: 2,
   },
   bookmarkText: {
     color: "#d2d2d2ff",
