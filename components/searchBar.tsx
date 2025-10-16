@@ -29,6 +29,7 @@ export function SearchBar() {
         placeholder={language.searchyourcity}
         value={query}
         onChangeText={setQuery}
+        onSubmitEditing={handlePress}
       />
       <TouchableOpacity style={styles.searchIcon} onPress={handlePress}>
         <IconSymbol size={50} name="search.fill" color={"#585858ff"} />
