@@ -1,29 +1,7 @@
-import * as Font from "expo-font";
-import { useEffect } from "react";
 import { Dimensions, Image, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const CustomFont = () => {
-  useEffect(() => {
-    async function loadFont() {
-      await Font.loadAsync({
-        "custom-font": require("../assets/fonts/BonheurRoyale-Regular.ttf"),
-      });
-    }
-
-    loadFont();
-  }, []);
-};
-
 export function AppTitle() {
-  const [fontsLoaded] = Font.useFonts({
-    "title-font": require("../assets/fonts/BonheurRoyale-Regular.ttf"),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
-
   return (
     <SafeAreaView
       edges={["top"]}
@@ -33,7 +11,7 @@ export function AppTitle() {
         style={styles.logo}
         source={require("../assets/images/ecko_wx-logo.png")}
       />
-      <Text style={[styles.title, { fontFamily: "title-font" }]}>Ecko Wx</Text>
+      <Text style={styles.title}>Ecko Wx</Text>
     </SafeAreaView>
   );
 }
