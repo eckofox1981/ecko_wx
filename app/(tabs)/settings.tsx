@@ -159,6 +159,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: "center",
     margin: 10,
+    padding: 5,
+    textTransform: "capitalize",
   },
   text: {
     fontWeight: 600,
