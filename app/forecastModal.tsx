@@ -14,7 +14,7 @@ export default function ForecastModal() {
   const forecast = useForecastStore((store) => store.forecast);
   const city = useMainCityStore((store) => store.mainCity);
   return (
-    <ThemedView>
+    <ThemedView style={{ paddingBottom: 70 }}>
       <ThemedText style={styles.cityName}>{cityNameFormating(city)}</ThemedText>
       <FlatList
         data={forecast}
