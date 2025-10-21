@@ -32,18 +32,110 @@ export default function Settings() {
     await AsyncStorage.setItem("tempUnit", tempUnit);
   };
 
-  const languageButtonsColor = (key: string) => {
-    if (language.id === key) {
-      return "orange";
+  const LanguageButtons = () => {
+    if (language.id === "en") {
+      return (
+        <View style={{ gap: 5 }}>
+          <Button
+            title="English"
+            color={"orange"}
+            onPress={() => {
+              languageSelection(englishSelected);
+            }}
+          />
+          <Button
+            title="Français"
+            onPress={() => {
+              languageSelection(frenchSelected);
+            }}
+          />
+          <Button
+            title="Svenska"
+            onPress={() => {
+              languageSelection(swedishSelected);
+            }}
+          />
+        </View>
+      );
     }
-    return "blue";
+    if (language.id === "se") {
+      return (
+        <View style={{ gap: 5 }}>
+          <Button
+            title="English"
+            onPress={() => {
+              languageSelection(englishSelected);
+            }}
+          />
+          <Button
+            title="Français"
+            onPress={() => {
+              languageSelection(frenchSelected);
+            }}
+          />
+          <Button
+            title="Svenska"
+            color={"orange"}
+            onPress={() => {
+              languageSelection(swedishSelected);
+            }}
+          />
+        </View>
+      );
+    }
+    if (language.id === "fr") {
+      return (
+        <View style={{ gap: 5 }}>
+          <Button
+            title="English"
+            onPress={() => {
+              languageSelection(englishSelected);
+            }}
+          />
+          <Button
+            title="Français"
+            color={"orange"}
+            onPress={() => {
+              languageSelection(frenchSelected);
+            }}
+          />
+          <Button
+            title="Svenska"
+            onPress={() => {
+              languageSelection(swedishSelected);
+            }}
+          />
+        </View>
+      );
+    }
   };
 
-  const tempUnitButonsColor = (unit: string) => {
-    if (tempUnit === unit) {
-      return "orange";
+  const TempUnitButons = () => {
+    if (tempUnit === "celsius") {
+      return (
+        <View style={{ gap: 5 }}>
+          <Button
+            title="Celsius"
+            color={"orange"}
+            onPress={() => saveTempUnit("celsius")}
+          />
+          <Button title="Farenheit" onPress={() => saveTempUnit("farenheit")} />
+        </View>
+      );
     }
-    return "blue";
+
+    if (tempUnit === "farenheit") {
+      return (
+        <View style={{ gap: 5 }}>
+          <Button title="Celsius" onPress={() => saveTempUnit("celsius")} />
+          <Button
+            title="Farenheit"
+            color={"orange"}
+            onPress={() => saveTempUnit("farenheit")}
+          />
+        </View>
+      );
+    }
   };
 
   return (
@@ -51,45 +143,11 @@ export default function Settings() {
       <ThemedText style={styles.title}>{language.settings}</ThemedText>
       <View style={styles.selection}>
         <ThemedText style={styles.text}>{language.temperatures}: </ThemedText>
-        <View style={{ gap: 5 }}>
-          <Button
-            title="Celsius"
-            color={tempUnitButonsColor("celsius")}
-            onPress={() => saveTempUnit("celsius")}
-          />
-          <Button
-            title="Farenheit"
-            color={tempUnitButonsColor("farenheit")}
-            onPress={() => saveTempUnit("farenheit")}
-          />
-        </View>
+        <TempUnitButons />
       </View>
       <View style={styles.selection}>
         <ThemedText style={styles.text}>{language.language}: </ThemedText>
-        <View style={{ gap: 5 }}>
-          <Button
-            title="English"
-            color={languageButtonsColor("en")}
-            onPress={() => {
-              languageSelection(englishSelected);
-            }}
-          />
-          <Button
-            title="Français"
-            color={languageButtonsColor("fr")}
-            onPress={() => {
-              languageSelection(frenchSelected);
-            }}
-          />
-          <Button
-            key={"se"}
-            title="Svenska"
-            color={languageButtonsColor("se")}
-            onPress={() => {
-              languageSelection(swedishSelected);
-            }}
-          />
-        </View>
+        <LanguageButtons />
       </View>
     </View>
   );
