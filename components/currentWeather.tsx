@@ -21,6 +21,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Loader from "react-native-three-dots";
 import { ThemedText } from "./themed-text";
 import { Wind } from "./wind";
 
@@ -57,6 +58,15 @@ export function CurrentWeather() {
         Alert.alert(language.couldNotFetchWeather, error)
       );
   }, [city, language, tempUnits]);
+
+  if (!currentWeather) {
+    return (
+      <View style={{ alignItems: "center", marginVertical: 20, gap: 15 }}>
+        <ThemedText>Weather loading</ThemedText>
+        <Loader color="#3300FF" />
+      </View>
+    );
+  }
 
   /**
    * saves city to favorite list in localstorage and globalstate
