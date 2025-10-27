@@ -49,3 +49,5 @@ Since this project is meant for mobile use, GPS-functionality will not work, how
 ## Comments to
 
 E-mail: [eckofox1981pm.me](mailto:eckofox1981pm.me) (be nice ;-) ).
+
+\*_This project originates from a school project and API keys were included for simplicity to allow tutor to correct without having to generate his/her own API-key._
