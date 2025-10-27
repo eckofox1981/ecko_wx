@@ -5,7 +5,7 @@ import { cityNameFormating } from "@/utilities/cityNameFormating";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { Alert, StyleSheet, TouchableOpacity, View } from "react-native";
-import { CityMap } from "./cityMap";
+import { CityMap } from "./cityMap"; //underlined for error is actuakky sorted automatically between web and mobile
 import { ThemedText } from "./themed-text";
 import { IconSymbol } from "./ui/icon-symbol";
 

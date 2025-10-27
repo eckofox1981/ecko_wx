@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
   },
   forecastList: {
     width: "100%",
-    paddingBottom: 30,
   },
   forecastListContent: {
     justifyContent: "center",

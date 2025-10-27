@@ -1,7 +1,8 @@
 import { City } from "@/models/city";
+import { HIDDEN_OPEN_WX_API_KEY } from "@/SECRET_KEYS";
 
-export const OPEN_WX_API_KEY: string =
-  "&appid=e45166a29325d9baa29447f7e208929d"; //includes syntax for call, would typically be hidden in env  but visible for school project
+export const OPEN_WX_API_KEY: string = `&appid=${HIDDEN_OPEN_WX_API_KEY}`; //includes syntax for call,
+// insert your Open Weather API key (should be in a file included in your .gitingore)
 
 export function CITY_GEOCODING_URL(name: string) {
   return `http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=20`;
